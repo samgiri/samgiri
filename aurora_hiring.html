@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoshi Lab — We're Hiring</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.glass-hover:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: transparent;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: transparent;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) { .navlinks { display: flex; } }
+
+header {
+  padding: 5rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+.accent-text {
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+.job-card {
+  glass;
+  glass-hover;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.job-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.job-highlights {
+  margin-bottom: 1.5rem;
+}
+
+.job-highlights h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+.job-highlights ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job-highlights li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.job-highlights li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--volt);
+  font-weight: 700;
+}
+
+form {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  glass;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+input, textarea, select {
+  padding: 0.875rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-submit {
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: transparent;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+  transition: all 0.3s ease;
+}
+
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+.benefits {
+  glass;
+  padding: 2.5rem;
+  margin: 3rem 0;
+}
+
+.benefits h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.benefits-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.benefit-item {
+  padding: 1rem;
+  background: rgba(255, 107, 26, 0.05);
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+footer p {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="aurora_index.html" class="logo">
+      <div class="logo-icon">S₿</div>
+      Satoshi Lab
+    </a>
+    <div class="navlinks">
+      <a href="aurora_index.html">Services</a>
+      <a href="aurora_academy.html">Academy</a>
+      <a href="aurora_hiring.html">Hiring</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_resources.html">Resources</a>
+    </div>
+  </nav-content>
+</nav>
+
+<header>
+  <h1>We're <span class="accent-text">hiring</span></h1>
+  <p class="tagline">Join Satoshi Lab India</p>
+  <p class="hero-text">Two open roles in Web3 community & operations. Based in India, working with a distributed studio. Apply now.</p>
+</header>
+
+<section id="jobs">
+  <h2>Open <span class="accent-text">positions</span></h2>
+  <p class="section-subtitle">India · Growing team · Web3 native</p>
+  
+  <div class="grid">
+    <div class="job-card">
+      <h3>Digital Marketing Manager</h3>
+      <div class="job-meta">
+        <span>📍 India (Remote/Hybrid)</span>
+        <span>💶 ₹30k–₹50k/month</span>
+        <span>⏰ Start ASAP</span>
+      </div>
+      <p>Build and manage social media presence across 4 crypto/Web3 projects. Drive community growth, engagement, and brand awareness. Execute marketing campaigns for launches.</p>
+      <div class="job-highlights">
+        <h4>You'll do:</h4>
+        <ul>
+          <li>Daily Twitter/X, Telegram, Discord, LinkedIn management</li>
+          <li>Submit projects to crypto listings (CoinGecko, CoinMarketCap)</li>
+          <li>Monitor community sentiment, engage with followers</li>
+          <li>Plan & execute product launch campaigns</li>
+          <li>Generate weekly/monthly metrics & reports</li>
+          <li>Coordinate with influencers/KOLs</li>
+        </ul>
+      </div>
+      <div class="job-highlights">
+        <h4>You have:</h4>
+        <ul>
+          <li>2+ years social media or digital marketing experience</li>
+          <li>Hands-on experience: Twitter/X, Telegram, Discord</li>
+          <li>Understanding of crypto/Web3 projects & launches</li>
+          <li>Strong copywriting & communication skills</li>
+          <li>Experience with social management tools</li>
+          <li>CoinGecko or CoinMarketCap listing experience (nice-to-have)</li>
+        </ul>
+      </div>
+      <a href="#apply" class="btn btn-primary">Apply now →</a>
+    </div>
+
+    <div class="job-card">
+      <h3>Operations Coordinator</h3>
+      <div class="job-meta">
+        <span>📍 India (On-site/Hybrid)</span>
+        <span>💶 ₹20k–₹35k/month</span>
+        <span>⏰ Start ASAP</span>
+      </div>
+      <p>Coordinate internal operations and client projects from start to finish. Ensure all deliverables, deadlines, and communications stay on track. Be the operational backbone.</p>
+      <div class="job-highlights">
+        <h4>You'll do:</h4>
+        <ul>
+          <li>Track project timelines, milestones & deliverables</li>
+          <li>Schedule & coordinate scoping calls, demos, standups</li>
+          <li>Maintain project trackers, meeting notes, contracts</li>
+          <li>Quality check before launches</li>
+          <li>Organize client handovers (repos, keys, playbooks)</li>
+          <li>Manage invoicing, expense tracking, retainers</li>
+        </ul>
+      </div>
+      <div class="job-highlights">
+        <h4>You have:</h4>
+        <ul>
+          <li>2+ years operations, project coordination, or EA experience</li>
+          <li>Expert at project management tools (Linear, Asana, Notion)</li>
+          <li>Excellent organizational skills & attention to detail</li>
+          <li>Strong written & verbal communication</li>
+          <li>Comfortable working cross-timezone with US/EU clients</li>
+          <li>Web3 or crypto experience (nice-to-have)</li>
+        </ul>
+      </div>
+      <a href="#apply" class="btn btn-primary">Apply now →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="benefits">
+    <h3>What we offer:</h3>
+    <div class="benefits-grid">
+      <div class="benefit-item">✓ Competitive salary</div>
+      <div class="benefit-item">✓ Flexible work arrangement</div>
+      <div class="benefit-item">✓ 5-day work week</div>
+      <div class="benefit-item">✓ Health insurance</div>
+      <div class="benefit-item">✓ PF & statutory benefits</div>
+      <div class="benefit-item">✓ Learning budget</div>
+      <div class="benefit-item">✓ Remote-first culture</div>
+      <div class="benefit-item">✓ Work with Web3 founders</div>
+    </div>
+  </div>
+</section>
+
+<section id="apply">
+  <h2>Apply <span class="accent-text">now</span></h2>
+  <p class="section-subtitle">Or email hr@satoshilab.ai with resume + portfolio</p>
+  
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <div class="form-group">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="position">Which position? *</label>
+      <select id="position" name="position" required>
+        <option value="">Select position...</option>
+        <option value="Digital Marketing Manager">Digital Marketing Manager</option>
+        <option value="Operations Coordinator">Operations Coordinator</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="resume">Resume / Portfolio Link *</label>
+      <input type="url" id="resume" name="resume" placeholder="https://..." required>
+    </div>
+    
+    <div class="form-group">
+      <label for="experience">Tell us about your relevant experience *</label>
+      <textarea id="experience" name="experience" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="why">Why do you want to join Satoshi Lab? *</label>
+      <textarea id="why" name="why" required></textarea>
+    </div>
+    
+    <button type="submit" class="form-submit">Submit Application →</button>
+  </form>
+  
+  <div style="text-align: center; margin-top: 2rem;">
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+      Or apply directly: <a href="mailto:hr@satoshilab.ai" style="color: var(--orange); text-decoration: underline;">hr@satoshilab.ai</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Satoshi Lab · We're Hiring</p>
+  <p>Braindeck Infotech Private Limited · CIN: U72100DL2010PTC206927</p>
+</footer>
+
+</body>
+</html>

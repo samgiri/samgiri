@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoshi Lab — Web3 Engineering + Growth Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --dark-border: rgba(255,255,255,0.1);
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+  --accent: #7C5CFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* GLASS EFFECT */
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.glass-hover:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: transparent;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+/* HERO */
+header {
+  padding: 6rem 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text {
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.ctas {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.stats {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 800px;
+}
+
+.stat {
+  glass;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat:hover {
+  background: rgba(20, 24, 41, 0.6);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* SECTIONS */
+section {
+  padding: 6rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  letter-spacing: -1px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.service-card {
+  glass;
+  glass-hover;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.service-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--orange);
+  opacity: 0.6;
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+/* BANNER */
+.banner {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.1), rgba(124, 92, 255, 0.1));
+  border: 1px solid rgba(255, 107, 26, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 3rem 0;
+}
+
+.banner h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.banner p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* PROCESS */
+.process-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.process-step {
+  glass;
+  glass-hover;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.step-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+}
+
+.process-step h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.process-step p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* FAQ */
+.faq-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.faq {
+  glass;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq.open {
+  background: rgba(20, 24, 41, 0.8);
+  border-color: rgba(255, 107, 26, 0.3);
+}
+
+.faq button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.faq button:hover {
+  color: var(--orange);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.faq.open .faq-answer {
+  display: block;
+}
+
+.faq-chevron {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: var(--orange);
+}
+
+.faq.open .faq-chevron {
+  transform: rotate(45deg);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+footer a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="/" class="logo">
+      <div class="logo-icon">S₿</div>
+      Satoshi Lab
+    </a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="aurora_academy.html">Academy</a>
+      <a href="aurora_hiring.html">Hiring</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_resources.html">Resources</a>
+    </div>
+  </nav-content>
+</nav>
+
+<header>
+  <h1>Build it.<br>Launch it.<br><span class="accent-text">Own it.</span></h1>
+  <p class="hero-text">
+    Satoshi Lab is the Web3 engineering + growth studio behind serious crypto launches. Smart contracts, dApps, AI tooling — plus the community and PR engine that makes launch day count. One team. Full accountability.
+  </p>
+  
+  <div class="ctas">
+    <a href="#contact" class="btn btn-primary">Start a project →</a>
+    <a href="#services" class="btn btn-secondary">Learn more ↓</a>
+  </div>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">8</div>
+      <div class="stat-label">Business Verticals</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1,800+</div>
+      <div class="stat-label">Media Outlets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Blockchain Networks</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">UTC+4</div>
+      <div class="stat-label">Dubai HQ</div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <h2>What we <span class="accent-text">do</span></h2>
+  <p class="section-subtitle">Six core services · One studio · Zero vendor chaos</p>
+  
+  <div class="grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>Blockchain Dev</h3>
+      <p>Smart contracts & token systems written for audits, not demos. Polygon · Ethereum · BNB · Base.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>Web3 Products</h3>
+      <p>Full dApps — wallet flows, dashboards, token-gated platforms that actually ship.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>AI & Automation</h3>
+      <p>LLM agents, Telegram/Discord bots, workflow automation that kills manual ops.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <h3>Security Reviews</h3>
+      <p>Contract reviews, Safe multisig setup, key management. One bug = the treasury.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <h3>Community Growth</h3>
+      <p>Multi-country Telegram & Discord ops. Moderated. Engaged. Retained.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-number">06</div>
+      <h3>Launch PR</h3>
+      <p>Press across 1,800+ crypto outlets. KOLs that match your audience. Launch-day noise.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 4rem 2rem;">
+  <div class="banner">
+    <h3>No guaranteed moons.<br>No fake metrics.<br>Defined work. <span class="accent-text">Delivered. Yours.</span></h3>
+    <p>In a space full of promises, our edge is boring: we tell you what we'll do, we do it, and we hand over everything — repos, channels, keys.</p>
+  </div>
+</section>
+
+<section id="process">
+  <h2>5 steps. <span class="accent-text">0 surprises.</span></h2>
+  <p class="section-subtitle">How we deliver on time, every time</p>
+  
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h4>Scope</h4>
+      <p>Free working session — your stage, your goals, what actually moves.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h4>Blueprint</h4>
+      <p>Written plan: deliverables, timeline, cost. Approved before work starts.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h4>Build</h4>
+      <p>Weekly demos + shared trackers from week one. Progress you can see.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h4>Launch</h4>
+      <p>Deployment, PR push, community activation — timed to the hour.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">5</div>
+      <h4>Handover</h4>
+      <p>Repos, keys, playbooks — all transferred. You own everything.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2 style="text-align: center; margin-bottom: 3rem;">Real <span class="accent-text">answers</span></h2>
+  
+  <div class="faq-wrapper">
+    <div class="faq open">
+      <button>
+        What is Satoshi Lab?
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-answer">
+        A Web3 engineering + growth studio in Dubai. We build blockchain products and run the launch — community, PR, campaigns — as one accountable team.
+      </div>
+    </div>
+    
+    <div class="faq">
+      <button>
+        Who do you work with?
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-answer">
+        Token projects heading to TGE, DePIN platforms, Web3 startups, and founders tired of juggling four vendors for one launch.
+      </div>
+    </div>
+    
+    <div class="faq">
+      <button>
+        Guarantee listings or price?
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-answer">
+        NO — and run from anyone who does. We deliver defined work: code, placements, community metrics. Markets do what markets do.
+      </div>
+    </div>
+    
+    <div class="faq">
+      <button>
+        How do we start?
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-answer">
+        Free scoping call → written proposal with fixed milestones. Monthly work has a 30-day exit both ways.
+      </div>
+    </div>
+    
+    <div class="faq">
+      <button>
+        Related to SatoshiLabs / Trezor?
+        <span class="faq-chevron">+</span>
+      </button>
+      <div class="faq-answer">
+        No. Independent Dubai studio. Zero affiliation with SatoshiLabs s.r.o. (Trezor).
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="text-align: center;">
+  <h2 style="margin-bottom: 1.5rem;">Ready to ship?</h2>
+  <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+    Let's talk about your project, training cohort, or hiring needs.
+  </p>
+  <a href="mailto:info@satoshilab.ai" class="btn btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">
+    Get in touch →
+  </a>
+</section>
+
+<footer>
+  <p>Satoshi Lab · Dubai · UTC+4</p>
+  <p>Braindeck Infotech Private Limited · CIN: U72100DL2010PTC206927</p>
+</footer>
+
+<script>
+document.querySelectorAll('.faq button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const faq = btn.parentElement;
+    const wasOpen = faq.classList.contains('open');
+    document.querySelectorAll('.faq').forEach(f => f.classList.remove('open'));
+    if (!wasOpen) faq.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SatoshiLab Academy — Learn. Build. Secure. Grow.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --dark-border: rgba(255,255,255,0.1);
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+  --accent: #7C5CFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.glass-hover:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: transparent;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+/* HEADER */
+header {
+  padding: 5rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* SECTIONS */
+section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  letter-spacing: -1px;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.course-card {
+  glass;
+  glass-hover;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  background: rgba(255, 107, 26, 0.1);
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.course-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.course-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.course-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.course-skills {
+  margin-bottom: 1.5rem;
+}
+
+.course-skills h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+.course-skills ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.course-skills li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.course-skills li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--volt);
+  font-weight: 700;
+}
+
+.course-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--orange);
+}
+
+/* PRIVILEGE SECTION */
+.privilege-banner {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.1), rgba(124, 92, 255, 0.1));
+  border: 1px solid rgba(255, 107, 26, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 3rem 0;
+}
+
+.privilege-banner h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.privilege-banner p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.benefits-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.benefit-item {
+  padding: 1rem;
+  background: rgba(255, 107, 26, 0.05);
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+/* CERTIFICATE */
+.cert-section {
+  glass;
+  padding: 2.5rem;
+  margin: 3rem 0;
+}
+
+.cert-section h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.cert-section p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.cert-features {
+  display: grid;
+  gap: 1rem;
+}
+
+.cert-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.cert-feature:before {
+  content: "★";
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: var(--volt);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+footer p {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+footer a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="aurora_index.html" class="logo">
+      <div class="logo-icon">S₿</div>
+      Satoshi Lab
+    </a>
+    <div class="navlinks">
+      <a href="aurora_index.html">Services</a>
+      <a href="aurora_academy.html">Academy</a>
+      <a href="aurora_hiring.html">Hiring</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_resources.html">Resources</a>
+    </div>
+  </nav-content>
+</nav>
+
+<header>
+  <h1>SatoshiLab Academy</h1>
+  <p class="tagline">Learn. Build. Secure. Grow in Web3.</p>
+  <p class="hero-text">
+    Structured online courses for non-technical founders, builders, and anyone who wants to understand or build in Web3. From free fundamentals to advanced certification — all cohort-based, Telegram-powered, and taught by builders who've shipped.
+  </p>
+</header>
+
+<section id="courses">
+  <h2>Our <span class="accent-text">6 courses</span></h2>
+  <p class="section-subtitle">Cohort-based · Live sessions + recorded · Certificate included</p>
+  
+  <div class="grid">
+    <!-- COURSE 1: LaunchPad -->
+    <div class="course-card">
+      <span class="course-badge">FREE</span>
+      <div class="course-number">1</div>
+      <h3>LaunchPad</h3>
+      <div class="course-meta">
+        <span>📹 2–3 hrs</span>
+        <span>🎯 Self-paced</span>
+        <span>🚀 Entry point</span>
+      </div>
+      <p>The free entry point. 11 self-paced videos introducing Bitcoin, blockchain, wallets, and Web3 basics. No prerequisites. Perfect for deciding if crypto is for you.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>What Bitcoin is and why it exists</li>
+          <li>How blockchain works (simple)</li>
+          <li>Wallet security & keys</li>
+          <li>Why Web3 matters</li>
+        </ul>
+      </div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll free →</a>
+    </div>
+
+    <!-- COURSE 2: Crypto Foundation -->
+    <div class="course-card">
+      <span class="course-badge">4 WEEKS</span>
+      <div class="course-number">2</div>
+      <h3>Crypto Foundation</h3>
+      <div class="course-meta">
+        <span>💶 ₹8,999</span>
+        <span>📅 4 weeks</span>
+        <span>💬 Live + recorded</span>
+      </div>
+      <p>Deep dive into Bitcoin, Ethereum, smart contracts, tokenomics, and hands-on wallet setup. Instructor-led, cohort-based.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>Bitcoin & Ethereum architecture</li>
+          <li>Smart contracts 101</li>
+          <li>Gas fees & transactions</li>
+          <li>DeFi basics & DEX trading</li>
+        </ul>
+      </div>
+      <div class="course-price">₹8,999</div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll →</a>
+    </div>
+
+    <!-- COURSE 3: SmartChain Pro -->
+    <div class="course-card">
+      <span class="course-badge">6 WEEKS</span>
+      <div class="course-number">3</div>
+      <h3>SmartChain Pro</h3>
+      <div class="course-meta">
+        <span>💶 ₹21,999</span>
+        <span>📅 6 weeks</span>
+        <span>⚙️ Hands-on</span>
+      </div>
+      <p>For builders ready to code. Solidity fundamentals, smart contract development, testing, and deployment. Build real contracts. No prior coding required.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>Solidity programming</li>
+          <li>Smart contract security</li>
+          <li>Testing & debugging</li>
+          <li>Deploy to testnet & mainnet</li>
+        </ul>
+      </div>
+      <div class="course-price">₹21,999</div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll →</a>
+    </div>
+
+    <!-- COURSE 4: Web3 Business -->
+    <div class="course-card">
+      <span class="course-badge">5 WEEKS</span>
+      <div class="course-number">4</div>
+      <h3>Web3 Business</h3>
+      <div class="course-meta">
+        <span>💶 ₹16,999</span>
+        <span>📅 5 weeks</span>
+        <span>📊 Strategy</span>
+      </div>
+      <p>For founders & business builders. Token launches, go-to-market strategy, community building, and tokenomics design. Theory meets real-world case studies.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>Token design & economics</li>
+          <li>Launch strategy</li>
+          <li>Community building</li>
+          <li>PR & market positioning</li>
+        </ul>
+      </div>
+      <div class="course-price">₹16,999</div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll →</a>
+    </div>
+
+    <!-- COURSE 5: Web3 Project Manager -->
+    <div class="course-card">
+      <span class="course-badge">5 WEEKS</span>
+      <div class="course-number">5</div>
+      <h3>Web3 Project Manager</h3>
+      <div class="course-meta">
+        <span>💶 ₹19,999</span>
+        <span>📅 5 weeks</span>
+        <span>👥 Operations</span>
+      </div>
+      <p>For operations & governance roles. DAOs, multisig management, project coordination, and Web3-specific PM skills. Non-technical but critical to scaling.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>DAO structure & governance</li>
+          <li>Multisig wallets & security</li>
+          <li>Project tracking in crypto</li>
+          <li>Community management</li>
+        </ul>
+      </div>
+      <div class="course-price">₹19,999</div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll →</a>
+    </div>
+
+    <!-- COURSE 6: Crypto Intelligence -->
+    <div class="course-card">
+      <span class="course-badge">6 WEEKS</span>
+      <div class="course-number">6</div>
+      <h3>Crypto Intelligence</h3>
+      <div class="course-meta">
+        <span>💶 ₹34,999</span>
+        <span>📅 6 weeks</span>
+        <span>🔍 Advanced</span>
+      </div>
+      <p>The flagship. Integrated with Chainwise platform. Due diligence, contract analysis, market intelligence, security reviews, and investment frameworks. Capstone project included.</p>
+      <div class="course-skills">
+        <h4>You'll learn:</h4>
+        <ul>
+          <li>Smart contract auditing</li>
+          <li>Token & project due diligence</li>
+          <li>Security risk assessment</li>
+          <li>Data-driven decision making</li>
+        </ul>
+      </div>
+      <div class="course-price">₹34,999</div>
+      <a href="mailto:info@satoshilab.ai" class="btn btn-primary">Enroll →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="privilege-banner">
+    <h3>Satoshi Lab Alumni Elite</h3>
+    <p>Complete one course? You're in the alumni network. <strong>30% off all future courses</strong> — plus eight lifetime benefits.</p>
+    <div class="benefits-grid">
+      <div class="benefit-item">✓ 30% discount on repeat courses</div>
+      <div class="benefit-item">✓ Lifetime access to alumni Discord</div>
+      <div class="benefit-item">✓ Job board for opportunities</div>
+      <div class="benefit-item">✓ Advance notice of new courses</div>
+      <div class="benefit-item">✓ 1st refusal on Satoshi Lab projects</div>
+      <div class="benefit-item">✓ Monthly alumni meetups</div>
+      <div class="benefit-item">✓ Networking with founders</div>
+      <div class="benefit-item">✓ Access to exclusive research</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cert-section">
+    <h3>✓ Completion Certificate Included</h3>
+    <p>Upon completion, you receive a <strong>Satoshi Lab Certificate of Completion</strong> — recognized by Web3 employers, shareable on LinkedIn, and verifiable with a unique certificate ID.</p>
+    <div class="cert-features">
+      <div class="cert-feature">Digital PDF (downloadable immediately upon completion)</div>
+      <div class="cert-feature">Verification link for employers or recruiters to check</div>
+      <div class="cert-feature">Certificate ID unique to you (impossible to forge)</div>
+      <div class="cert-feature">LinkedIn-ready image for your profile</div>
+      <div class="cert-feature">Demonstrates real skills in Web3 — valued by crypto companies</div>
+    </div>
+  </div>
+</section>
+
+<section style="text-align: center;">
+  <h2 style="margin-bottom: 1.5rem;">Ready to start <span class="accent-text">learning</span>?</h2>
+  <a href="mailto:info@satoshilab.ai" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">
+    Enroll in a course →
+  </a>
+</section>
+
+<footer>
+  <p>SatoshiLab Academy · Learn. Build. Secure. Grow.</p>
+  <p>Braindeck Infotech Private Limited · CIN: U72100DL2010PTC206927</p>
+</footer>
+
+</body>
+</html>
