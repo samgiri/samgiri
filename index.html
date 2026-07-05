@@ -526,6 +526,42 @@ h1 {
   transform: translateY(-5px);
 }
 
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
 /* FOOTER */
 footer {
   background: transparent;
@@ -892,6 +928,16 @@ footer p {
     <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Dubai, UAE • Braindeck Infotech • Building Web3</p>
   </footer-content>
 </footer>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 

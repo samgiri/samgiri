@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Satoshi Lab — Web3 Engineering Studio</title>
+<title>About Satoshi Lab — Web3 Engineering + Growth Studio</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 :root {
   --dark-bg: #0a0e27;
+  --dark-card: #141829;
   --orange: #FF6B1A;
   --orange-light: #FF8A47;
   --volt: #D8FF3E;
@@ -16,12 +18,19 @@
   --text-secondary: #b0b5c0;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html { scroll-behavior: smooth; }
+
 body {
   background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,31 +47,37 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.9rem 1.8rem;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.95rem;
   text-transform: uppercase;
+  transition: all 0.3s ease;
   cursor: pointer;
   border: none;
-  background: linear-gradient(135deg, var(--orange), var(--orange-light));
-  color: transparent;
-  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
-  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
-.btn:hover {
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
 }
 
+/* NAV */
 nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 2rem;
   backdrop-filter: blur(20px);
-  background: rgba(10, 14, 39, 0.7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 14, 39, 0.9);
+  border-bottom: 1px solid rgba(255, 107, 26, 0.2);
 }
 
 nav-content {
@@ -76,191 +91,249 @@ nav-content {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.8rem;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .logo-icon {
   width: 50px;
   height: 50px;
   background: url('satoshi-lab-logo.png') center/contain no-repeat;
-  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  color: transparent;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .navlinks {
   display: none;
   align-items: center;
   gap: 2.5rem;
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-}
-
-@media (min-width: 768px) { .navlinks { display: flex; } }
-
-header {
-  padding: 5rem 2rem 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.tagline {
-  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--orange);
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
 }
 
 section {
-  padding: 5rem 2rem;
-  max-width: 1200px;
+  padding: 4rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 800;
-  margin-bottom: 2rem;
-  line-height: 1.2;
-}
-
-.accent-text {
-  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.prose {
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text {
   max-width: 700px;
-  margin: 0 auto;
-  font-size: 1rem;
-  line-height: 1.8;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: var(--text-secondary);
 }
 
-.prose p {
-  margin-bottom: 1.5rem;
-}
-
-.prose strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.verticals-grid {
+.grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin-top: 2rem;
+  gap: 2rem;
+  grid-template-columns: 1fr;
 }
 
-.vertical-card {
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
   glass;
   padding: 2rem;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
 }
 
-.vertical-card h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
+.card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  color: var(--orange);
   letter-spacing: 0.5px;
+  margin-bottom: 1rem;
 }
 
-.vertical-card p {
+.card p {
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
-.banner {
-  glass;
-  padding: 3rem;
-  margin: 3rem 0;
-  text-align: center;
-}
-
-.banner h3 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  letter-spacing: 0.5px;
-}
-
-.stats-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  margin-top: 2rem;
-}
-
-.stat {
-  glass;
-  padding: 2rem;
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: url('satoshi-lab-logo.png') center/contain no-repeat;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.75rem;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  letter-spacing: 0.5px;
-}
-
-.company-details {
+/* ENQUIRY FORM */
+.enquiry-form {
   glass;
   padding: 2.5rem;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
+  max-width: 550px;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(255, 107, 26, 0.25);
+  text-align: left;
 }
 
-.company-details strong {
+.enquiry-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.enquiry-form label:first-child {
+  margin-top: 0;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+.enquiry-form select option {
+  background: var(--dark-bg);
   color: var(--text-primary);
 }
 
+.enquiry-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
+/* FOOTER */
 footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 3rem 2rem;
+  background: transparent;
+  border-top: 1px solid rgba(255, 107, 26, 0.2);
+  padding: 3rem 2rem 2rem;
   text-align: center;
-  color: var(--text-secondary);
+  margin-top: 2rem;
 }
 
 footer p {
   font-size: 0.85rem;
-  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contact-info {
+  font-size: 1.05rem;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 1rem 0;
   letter-spacing: 0.5px;
 }
 
@@ -270,183 +343,240 @@ footer p {
 
 <nav>
   <nav-content>
-    <a href="aurora_index.html" class="logo">
-      <div class="logo-icon">S₿</div>
-      Satoshi Lab
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">Satoshi Lab</span>
     </a>
     <div class="navlinks">
-      <a href="aurora_index.html">Services</a>
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
       <a href="aurora_academy.html">Academy</a>
       <a href="aurora_hiring.html">Hiring</a>
-      <a href="aurora_about.html">About</a>
-      <a href="aurora_resources.html">Resources</a>
     </div>
   </nav-content>
 </nav>
 
-<header>
-  <h1>About Satoshi Lab</h1>
-  <p class="tagline">Web3 engineering + growth studio built for launch</p>
-</header>
-
-<section>
-  <h2>Who we <span class="accent-text">are</span></h2>
-  
-  <div class="prose">
-    <p>
-      <strong>Satoshi Lab</strong> is a Web3 engineering and growth studio headquartered in Dubai. We build smart contracts, Web3 products, and the community + PR infrastructure that makes crypto launches count. We're not a consultancy that disappears after handoff — we stay accountable from whitepaper to mainnet.
-    </p>
-    
-    <p>
-      We're part of <strong>Braindeck Infotech Private Limited</strong>, a diversified technology holding company incorporated in Delhi (CIN: U72100DL2010PTC206927). Beyond Satoshi Lab, we operate <strong>eight business verticals</strong> spanning Web3, education, fintech, real estate, and technology.
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>Our <span class="accent-text">verticals</span></h2>
-  
-  <div class="verticals-grid">
-    <div class="vertical-card">
-      <h4>Satoshi Lab</h4>
-      <p>Web3 engineering + growth. Smart contracts, dApps, community, PR, security.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>SatoshiLab Academy</h4>
-      <p>Structured crypto education for non-technical builders. 6-course curriculum.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>Chainwise</h4>
-      <p>Blockchain data, market intelligence, & verification platform.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>PlotShare / KhaliPlot</h4>
-      <p>Fractional real estate investment & tokenization platform.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>Web3 Events & Summits</h4>
-      <p>Industry conferences, bootcamps, and networking events.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>AI & Automation</h4>
-      <p>LLM agents, Telegram/Discord bots, workflow automation.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>CoinConnect</h4>
-      <p>Payment solutions & fund management for crypto projects.</p>
-    </div>
-    
-    <div class="vertical-card">
-      <h4>Legacy IT Services</h4>
-      <p>Software development, IT consulting, infrastructure.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Our <span class="accent-text">edge</span></h2>
-  
-  <div class="prose">
-    <p>
-      <strong>One team. Full accountability.</strong> Unlike most crypto agencies, we don't hand over code and disappear. We manage the entire launch — engineering, product, security, community, and PR — under one roof. No vendor chaos. No fingerpointing.
-    </p>
-    
-    <p>
-      <strong>We ship.</strong> We've launched tokens, built dApps that process real volume, and grown communities from zero. Our work is live on Ethereum, Polygon, BNB Chain, and Base.
-    </p>
-    
-    <p>
-      <strong>We're honest.</strong> No fake metrics. No guaranteed moon missions. We deliver defined work — code, placements, community size — and let the market do what it does.
-    </p>
-    
-    <p>
-      <strong>We educate.</strong> Through SatoshiLab Academy, we've trained hundreds to understand and build in Web3. We believe crypto adoption requires demystifying crypto.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div class="banner">
-    <h3>By the numbers</h3>
-    
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-number">8</div>
-        <div class="stat-label">Business Verticals</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">1,800+</div>
-        <div class="stat-label">Media Outlets</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">4+</div>
-        <div class="stat-label">Blockchain Networks</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">500+</div>
-        <div class="stat-label">Students Trained</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">6</div>
-        <div class="stat-label">Academy Courses</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">UTC+4</div>
-        <div class="stat-label">Dubai HQ</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Company <span class="accent-text">structure</span></h2>
-  
-  <div class="company-details">
-    <p>
-      <strong>Satoshi Lab</strong> operates as a business division under <strong>Braindeck Infotech Private Limited</strong>, a holding company with diversified operations in IT, Web3, fintech, real estate, and education.
-    </p>
-    
-    <p style="margin-top: 1.5rem;">
-      <strong>Legal Details:</strong><br>
-      • <strong>Legal Entity:</strong> Braindeck Infotech Private Limited<br>
-      • <strong>CIN:</strong> U72100DL2010PTC206927<br>
-      • <strong>Incorporation:</strong> August 2010, Delhi<br>
-      • <strong>PAN:</strong> AAICA7486P<br>
-      • <strong>MOA Status:</strong> Amended to include Web3, blockchain, education, fintech<br>
-      • <strong>Registration:</strong> Active with ROC
-    </p>
-    
-    <p style="margin-top: 1.5rem;">
-      The Memorandum of Association was expanded to authorize all eight business verticals, ensuring legal clarity for operations across Web3, education, real estate, events, and fintech.
-    </p>
-  </div>
-</section>
-
+<!-- HERO -->
 <section style="text-align: center;">
-  <h2 style="margin-bottom: 1.5rem;">Get <span class="accent-text">in touch</span></h2>
+  <h1>About <span class="accent-text">Satoshi Lab</span></h1>
+  <p class="hero-text">
+    A global Web3 engineering studio. We build smart contracts, products, and communities for founders worldwide. Operating 8 business verticals across Web3, education, fintech, and technology.
+  </p>
+</section>
+
+<!-- WHO WE ARE -->
+<section>
+  <h2>Who We <span class="accent-text">Are</span></h2>
   
-  <div class="prose" style="margin-bottom: 2rem;">
-    <p>
-      <strong>For projects:</strong> <a href="mailto:info@satoshilab.ai" style="color: var(--orange); text-decoration: underline;">info@satoshilab.ai</a><br>
-      <strong>For training:</strong> <a href="mailto:info@satoshilab.ai" style="color: var(--orange); text-decoration: underline;">info@satoshilab.ai</a><br>
-      <strong>For hiring:</strong> <a href="mailto:hr@satoshilab.ai" style="color: var(--orange); text-decoration: underline;">hr@satoshilab.ai</a><br>
-      <strong>Location:</strong> Dubai, UAE (UTC+4)
+  <div class="glass" style="padding: 3rem; margin: 2rem auto; max-width: 950px;">
+    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+      Satoshi Lab is a global Web3 engineering and growth studio. We are a team of developers, designers, community managers, and growth strategists dedicated to helping Web3 projects build, launch, and scale successfully — wherever they are in the world.
+    </p>
+    
+    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+      We believe in full-stack solutions. We don't just write code—we build products, manage communities, handle security, and drive growth. From idea to mainnet to market leadership, we're with you every step.
     </p>
   </div>
-  
-  <a href="aurora_index.html" class="btn">Back to home →</a>
 </section>
+
+<!-- VISION & MISSION -->
+<section>
+  <h2>Vision & <span class="accent-text">Mission</span></h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>🎯 Our Vision</h3>
+      <p>
+        Become the leading Web3 engineering and growth studio globally. Empower developers, founders, and communities to build, launch, and scale Web3 projects with confidence and transparency.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>🚀 Our Mission</h3>
+      <p>
+        Operate 8 integrated verticals spanning Web3 engineering, education, fintech, and community development. Provide comprehensive solutions—from smart contracts to community management to due diligence. Partner with founders from day one.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>💡 Our Values</h3>
+      <p>
+        Transparency. Accountability. Quality. Speed. We believe in shipping great work, owning outcomes, and building long-term partnerships. No shortcuts. No excuses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 VERTICALS -->
+<section>
+  <h2>Our <span class="accent-text">Verticals</span></h2>
+  <p style="font-size: 0.95rem; color: var(--orange); margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">
+    8 Integrated Business Lines • One Studio • Full Accountability
+  </p>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>🎓 Academy</h3>
+      <p>Learn Web3 through structured courses. Ignite, Build, Launch. Training programs for beginners to advanced users.</p>
+    </div>
+    
+    <div class="card">
+      <h3>🔎 Chainwise</h3>
+      <p>Blockchain data, analytics, and intelligence. Token investigation. Project verification. Due diligence tools.</p>
+    </div>
+    
+    <div class="card">
+      <h3>🛡️ Smart Contract Audits</h3>
+      <p>Security reviews and code audits. Find bugs before launch. Multisig setup. Key management solutions.</p>
+    </div>
+    
+    <div class="card">
+      <h3>🌍 Community Agency</h3>
+      <p>Manage Telegram and Discord communities. Engagement. Moderation. 24/7 operations across timezones.</p>
+    </div>
+    
+    <div class="card">
+      <h3>💼 Web3 Job Board</h3>
+      <p>Connect Web3 talent with opportunities. Build teams. Match founders with developers and operators.</p>
+    </div>
+    
+    <div class="card">
+      <h3>📊 Research & Due Diligence</h3>
+      <p>Project analysis. Risk assessment. Token fundamentals. Smart investment decisions backed by data.</p>
+    </div>
+    
+    <div class="card">
+      <h3>🏆 Annual Certification</h3>
+      <p>Web3 Professional Certification Program. Industry-recognized credentials. Career advancement in Web3.</p>
+    </div>
+    
+    <div class="card">
+      <h3>🤝 Corporate Training</h3>
+      <p>University and corporate programs. Web3 for enterprises. Upskill teams. Enterprise blockchain adoption.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section>
+  <h2>Why Choose <span class="accent-text">Satoshi Lab</span></h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>Full-Stack Solutions</h3>
+      <p>
+        We handle everything from smart contracts to community management to security to growth. One partner, complete coverage.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>Global Team, Global Reach</h3>
+      <p>
+        Offices in the UAE and India with a team spanning multiple timezones. We serve founders across Asia, Middle East, Europe, and the Americas.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>Proven Track Record</h3>
+      <p>
+        1,800+ press placements. Contracts audited. Communities scaled. Tokens launched. Measurable results.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>Education-First Approach</h3>
+      <p>
+        We teach you as we build. Through Academy courses, you gain skills while we execute. Knowledge transfer matters.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>Multi-Blockchain Expertise</h3>
+      <p>
+        Deploy on Ethereum, Polygon, BNB Chain, Base, and more. We know every network's quirks and opportunities.
+      </p>
+    </div>
+    
+    <div class="card">
+      <h3>Founder-First Mindset</h3>
+      <p>
+        We think like founders. We care about your success because our success depends on yours. Aligned incentives.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section>
+  <h2>Our <span class="accent-text">Offices</span></h2>
+  
+  <div class="glass" style="padding: 2.5rem; margin: 2rem auto; max-width: 900px;">
+    <div style="margin-bottom: 2rem;">
+      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">🌍 Global Presence</p>
+      <p style="font-size: 1.05rem; color: var(--text-primary);">Offices in UAE & India</p>
+      <p style="font-size: 0.95rem; color: var(--text-secondary);">Serving clients across Asia, Middle East, Europe, and the Americas</p>
+    </div>
+    
+    <div style="height: 1px; background: rgba(255, 107, 26, 0.2); margin: 2rem 0;"></div>
+    
+    <div>
+      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">Legal Entity</p>
+      <p style="font-size: 1.05rem; color: var(--text-primary);">Braindeck Infotech Private Limited</p>
+      <p style="font-size: 0.95rem; color: var(--text-secondary);">Established 2010</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY FORM + CTA -->
+<section id="enquiry" style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Let's <span class="accent-text">Work Together</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem;">
+    Have a Web3 project? Need a partner to build or scale? Send us a quick enquiry.
+  </p>
+  
+  <form class="enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Full name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    
+    <label for="purpose">Purpose</label>
+    <select id="purpose" name="purpose" required>
+      <option value="" disabled selected>Select purpose</option>
+      <option value="project">Start a Project</option>
+      <option value="academy">Join Academy Course</option>
+      <option value="audit">Smart Contract Audit</option>
+      <option value="community">Community Management</option>
+      <option value="partnership">Partnership</option>
+      <option value="other">Other</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+  </form>
+  
+  <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 2rem;">
+    Or connect instantly: 💬 <a href="https://t.me/asksatoshilab" style="color: var(--orange); font-weight: 700;">@asksatoshilab</a> on Telegram
+  </p>
+</section>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
 
 <footer>
-  <p>Satoshi Lab · About</p>
-  <p>Braindeck Infotech Private Limited · CIN: U72100DL2010PTC206927</p>
+  <p>Satoshi Lab • Web3 Engineering + Growth Studio</p>
+  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Global Offices: UAE • India | Building Web3 Worldwide</p>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 </body>
 </html>
