@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Satoshi Lab | Web3 Engineering + Growth Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 107, 26, 0.5);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 107, 26, 0.2);
+  border-color: var(--orange);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.9);
+  border-bottom: 1px solid rgba(255, 107, 26, 0.2);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* SERVICE DETAIL BLOCKS */
+.service-block {
+  glass;
+  padding: 3rem;
+  border: 2px solid rgba(255, 107, 26, 0.2);
+  margin-bottom: 3rem;
+  scroll-margin-top: 110px;
+}
+
+.service-block:hover {
+  border-color: rgba(255, 107, 26, 0.4);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-icon {
+  font-size: 3.5rem;
+}
+
+.service-block p.desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.include-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--orange);
+  margin: 1.5rem 0 0.8rem;
+}
+
+.service-block ul {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.service-block ul li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0;
+  padding-left: 1.6rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.service-block ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--volt);
+  font-weight: 800;
+}
+
+.good-for {
+  background: rgba(255, 107, 26, 0.08);
+  border-left: 3px solid var(--orange);
+  padding: 1rem 1.5rem;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 1.5rem;
+}
+
+.good-for p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.good-for strong {
+  color: var(--orange);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
+/* FOOTER */
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 107, 26, 0.2);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contact-info {
+  font-size: 1.05rem;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 0.5px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">Satoshi Lab</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="aurora_academy.html">Academy</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_hiring.html">Careers</a>
+    </div>
+  </nav-content>
+</nav>
+
+<!-- HERO -->
+<section style="text-align: center;">
+  <h1>Our <span class="accent-text">Services</span></h1>
+  <p class="hero-text">
+    Full-stack Web3 solutions for founders and projects. From code to community to launch — one team, full accountability.
+  </p>
+  <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Discuss Your Project →</a>
+</section>
+
+<!-- SERVICE 1: SMART CONTRACTS -->
+<section style="padding-top: 1rem; padding-bottom: 0;">
+  <div class="service-block" id="smart-contracts">
+    <div class="service-header">
+      <div class="service-icon">⛓️</div>
+      <h2>Smart <span class="accent-text">Contracts</span></h2>
+    </div>
+    <p class="desc">
+      We write, test, and deploy smart contracts that are built for security — not just demos. Token systems, DeFi protocols, staking contracts, and vesting mechanisms across all major blockchain networks.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>Token development (ERC-20, BEP-20, and custom standards)</li>
+      <li>DeFi protocols — staking, farming, liquidity pools</li>
+      <li>Vesting schedules & tokenomics implementation</li>
+      <li>Deployment on Ethereum, Polygon, BNB Chain, Base & more</li>
+      <li>Full testing suite & documentation handover</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Token projects heading to launch, DeFi startups, founders needing production-ready contracts</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+
+  <!-- SERVICE 2: WEB3 PRODUCTS -->
+  <div class="service-block" id="web3-apps">
+    <div class="service-header">
+      <div class="service-icon">💻</div>
+      <h2>Web3 <span class="accent-text">Products</span></h2>
+    </div>
+    <p class="desc">
+      Complete decentralized applications — from user interface to blockchain integration. We build dApps that real people can actually use: clean design, smooth wallet flows, and reliable performance.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>Full dApp development (frontend + smart contracts)</li>
+      <li>Wallet integrations (MetaMask, WalletConnect, Trust Wallet)</li>
+      <li>Dashboards & analytics interfaces</li>
+      <li>Token-gated platforms & membership systems</li>
+      <li>NFT platforms & marketplaces</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Startups building their first product, projects upgrading from MVP, businesses entering Web3</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+
+  <!-- SERVICE 3: AI & AUTOMATION -->
+  <div class="service-block" id="ai-automation">
+    <div class="service-header">
+      <div class="service-icon">🤖</div>
+      <h2>AI & <span class="accent-text">Automation</span></h2>
+    </div>
+    <p class="desc">
+      Stop doing manual work. We build AI agents and bots that handle your community questions, automate your workflows, and keep your operations running 24/7 — even while you sleep.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>Telegram & Discord bots (moderation, FAQs, alerts)</li>
+      <li>AI agents powered by LLMs for support & engagement</li>
+      <li>Workflow automation (reports, notifications, data sync)</li>
+      <li>Custom trading & monitoring tools</li>
+      <li>Integration with your existing systems</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Communities drowning in repeat questions, teams doing manual reporting, projects scaling operations</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+
+  <!-- SERVICE 4: SECURITY AUDITS -->
+  <div class="service-block" id="security-audits">
+    <div class="service-header">
+      <div class="service-icon">🔐</div>
+      <h2>Security <span class="accent-text">Audits</span></h2>
+    </div>
+    <p class="desc">
+      One bug can drain your entire treasury. We review your smart contracts line by line, find vulnerabilities before hackers do, and set up secure key management so your funds stay yours.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>Smart contract security reviews & audit reports</li>
+      <li>Vulnerability identification & fix recommendations</li>
+      <li>Safe multisig wallet setup</li>
+      <li>Key management best practices</li>
+      <li>Pre-launch security checklist</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Projects before mainnet launch, teams handling treasury funds, contracts managing user deposits</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+
+  <!-- SERVICE 5: COMMUNITY MANAGEMENT -->
+  <div class="service-block" id="community">
+    <div class="service-header">
+      <div class="service-icon">👥</div>
+      <h2>Community <span class="accent-text">Management</span></h2>
+    </div>
+    <p class="desc">
+      A dead community kills projects faster than bad code. Our team manages your Telegram and Discord around the clock — moderating, engaging, answering questions, and keeping your members active and loyal.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>24/7 Telegram & Discord moderation across timezones</li>
+      <li>Community setup — channels, roles, bots, rules</li>
+      <li>Engagement campaigns, AMAs & events</li>
+      <li>Multi-language community support</li>
+      <li>Weekly growth & sentiment reports</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Projects pre/post launch, teams without community staff, founders tired of moderating at 3 AM</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+
+  <!-- SERVICE 6: LAUNCH PR -->
+  <div class="service-block" id="launch-pr">
+    <div class="service-header">
+      <div class="service-icon">📢</div>
+      <h2>Launch <span class="accent-text">PR</span></h2>
+    </div>
+    <p class="desc">
+      Launch day only happens once. We make it count with press coverage across 1,800+ crypto media outlets, KOL partnerships that match your audience, and a coordinated push that builds real momentum.
+    </p>
+    
+    <div class="include-title">What's Included</div>
+    <ul>
+      <li>Press release writing & distribution to 1,800+ outlets</li>
+      <li>KOL & influencer campaign coordination</li>
+      <li>Listing support (CoinGecko, CoinMarketCap)</li>
+      <li>Launch-day timeline & momentum planning</li>
+      <li>Social media announcement strategy</li>
+    </ul>
+    
+    <div class="good-for">
+      <p><strong>Best For</strong>Token launches, product releases, projects needing visibility in a crowded market</p>
+    </div>
+    
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Get a Quote →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Not Sure What You <span class="accent-text">Need?</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
+    Tell us about your project. We'll recommend the right solution — free scoping call, no commitment.
+  </p>
+  
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+    <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">💬 Chat on Telegram</a>
+    <a href="mailto:info@satoshilab.ai" class="btn btn-secondary">📧 Send Email</a>
+  </div>
+</section>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
+
+<footer>
+  <p>Satoshi Lab • Web3 Engineering + Growth Studio</p>
+  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Global Offices: UAE • India | Building Web3 Worldwide</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+</body>
+</html>
