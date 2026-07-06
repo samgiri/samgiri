@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoshi Lab Academy — Learn. Build. Secure. Grow in Web3.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 107, 26, 0.5);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 107, 26, 0.2);
+  border-color: var(--orange);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.9);
+  border-bottom: 1px solid rgba(255, 107, 26, 0.2);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  glass;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.card-icon {
+  font-size: 2.8rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+.card .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* BENEFIT CARDS - HIGHLIGHTED */
+.benefit-card {
+  glass;
+  padding: 2rem;
+  border: 2px solid rgba(255, 107, 26, 0.25);
+  background: rgba(255, 107, 26, 0.05);
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  background: rgba(255, 107, 26, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  transform: translateY(-5px);
+}
+
+.benefit-card .card-icon {
+  font-size: 2.5rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0.8rem 0;
+  letter-spacing: 0.3px;
+}
+
+.benefit-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* COURSE CARDS */
+.course-card {
+  glass;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 107, 26, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card:hover {
+  background: rgba(20, 24, 41, 0.7);
+  border-color: var(--orange);
+  transform: translateY(-5px);
+}
+
+.course-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.badge-free {
+  background: rgba(216, 255, 62, 0.15);
+  color: var(--volt);
+  border: 1px solid var(--volt);
+}
+
+.badge-popular {
+  background: rgba(255, 107, 26, 0.15);
+  color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
+.badge-flagship {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.3), rgba(216, 255, 62, 0.2));
+  color: #fff;
+  border: 1px solid var(--orange);
+}
+
+.course-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.8rem 0;
+}
+
+.course-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.course-card ul {
+  list-style: none;
+  margin: 1rem 0;
+  flex-grow: 1;
+}
+
+.course-card ul li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.course-card ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--volt);
+  font-weight: 800;
+}
+
+/* JOURNEY STEPS */
+.journey-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .journey-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.journey-step {
+  glass;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid rgba(255, 107, 26, 0.25);
+  transition: all 0.3s ease;
+}
+
+.journey-step:hover {
+  transform: scale(1.05);
+  border-color: var(--orange);
+}
+
+.journey-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.journey-step h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.journey-step p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ENQUIRY FORM */
+.enquiry-form {
+  glass;
+  padding: 2.5rem;
+  max-width: 550px;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(255, 107, 26, 0.25);
+  text-align: left;
+}
+
+.enquiry-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.enquiry-form label:first-child {
+  margin-top: 0;
+}
+
+.enquiry-form input,
+.enquiry-form select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+.enquiry-form select option {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+}
+
+.enquiry-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
+/* FOOTER */
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 107, 26, 0.2);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contact-info {
+  font-size: 1.05rem;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 0.5px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">Satoshi Lab</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_hiring.html">Careers</a>
+    </div>
+  </nav-content>
+</nav>
+
+<!-- HERO -->
+<section style="text-align: center;">
+  <h1>Satoshi Lab <span class="accent-text">Academy</span></h1>
+  <p style="font-size: 1.3rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+    Learn. Build. Secure. Grow in Web3.
+  </p>
+  <p class="hero-text">
+    Crypto and blockchain explained in simple language. For everyone — no technical background needed. Learn from real builders, earn certificates, and join a growing community.
+  </p>
+  
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem;">
+    <a href="#courses" class="btn btn-primary">Start Free Course →</a>
+    <a href="#benefits" class="btn btn-secondary">See Benefits</a>
+  </div>
+</section>
+
+<!-- BENEFITS FIRST -->
+<section id="benefits">
+  <h2>What You <span class="accent-text">Get</span></h2>
+  <p class="section-subtitle">✨ Real Benefits • Not Just Videos</p>
+  
+  <div class="grid">
+    <div class="benefit-card">
+      <div class="card-icon">🎓</div>
+      <h3>Verified Certificate</h3>
+      <p>Get a certificate with a unique ID after every course. Share it on LinkedIn, your resume, or WhatsApp. Employers can verify it online.</p>
+    </div>
+    
+    <div class="benefit-card">
+      <div class="card-icon">🗣️</div>
+      <h3>Simple Language</h3>
+      <p>No confusing tech words. We explain Bitcoin, crypto, and blockchain the way a friend would — with real examples from daily life.</p>
+    </div>
+    
+    <div class="benefit-card">
+      <div class="card-icon">📱</div>
+      <h3>Live Classes + Telegram</h3>
+      <p>Weekly live sessions with recordings. Ask questions anytime in your private Telegram group. Learn from home, at your own pace.</p>
+    </div>
+    
+    <div class="benefit-card">
+      <div class="card-icon">🛡️</div>
+      <h3>Scam Protection</h3>
+      <p>Learn to spot fake tokens, rug pulls, and frauds BEFORE you lose money. This one skill can save you lakhs.</p>
+    </div>
+    
+    <div class="benefit-card">
+      <div class="card-icon">💼</div>
+      <h3>Career & Income Skills</h3>
+      <p>Web3 jobs are growing fast. Learn skills for new careers — community manager, project manager, developer, analyst — or start your own project.</p>
+    </div>
+    
+    <div class="benefit-card">
+      <div class="card-icon">🏆</div>
+      <h3>Alumni Elite Benefits</h3>
+      <p>Finish one course and unlock 30% discount on all future courses, plus lifetime alumni benefits and early access to events.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING JOURNEY -->
+<section>
+  <h2>Your Learning <span class="accent-text">Journey</span></h2>
+  <p class="section-subtitle">🚀 3 Stages • Beginner to Expert</p>
+  
+  <div class="journey-grid">
+    <div class="journey-step">
+      <div class="journey-icon">🔥</div>
+      <h3>Ignite</h3>
+      <p>Start free. Understand what crypto and blockchain really are. Build your foundation.</p>
+    </div>
+    
+    <div class="journey-step">
+      <div class="journey-icon">💪</div>
+      <h3>Build</h3>
+      <p>Go deeper. Learn practical skills — wallets, trading basics, smart contracts, real tools.</p>
+    </div>
+    
+    <div class="journey-step">
+      <div class="journey-icon">🚀</div>
+      <h3>Launch</h3>
+      <p>Become a professional. Manage projects, analyze tokens, launch your own Web3 career.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <h2>Our <span class="accent-text">Courses</span></h2>
+  <p class="section-subtitle">📚 Start Free • Upgrade When Ready</p>
+  
+  <div class="grid">
+    <div class="course-card">
+      <span class="course-badge badge-free">FREE</span>
+      <h3>LaunchPad</h3>
+      <div class="course-price">₹0</div>
+      <div class="course-meta">2-3 Hours • 11 Videos • Self-Paced</div>
+      <ul>
+        <li>What is Bitcoin & why it matters</li>
+        <li>How blockchain works (simple)</li>
+        <li>Create your first wallet safely</li>
+        <li>Avoid common beginner mistakes</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Start Free →</a>
+    </div>
+    
+    <div class="course-card">
+      <span class="course-badge badge-popular">MOST POPULAR</span>
+      <h3>Crypto Foundation</h3>
+      <div class="course-price">₹8,999</div>
+      <div class="course-meta">4 Weeks • Live + Self-Paced • Certificate</div>
+      <ul>
+        <li>Bitcoin, Ethereum & smart contracts</li>
+        <li>Wallets, exchanges, DEX vs CEX</li>
+        <li>Spot scams & protect your money</li>
+        <li>Design your first token on paper</li>
+        <li>Private Telegram cohort group</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Enroll Now →</a>
+    </div>
+    
+    <div class="course-card">
+      <span class="course-badge badge-popular">HANDS-ON</span>
+      <h3>Smart Contract Pro</h3>
+      <div class="course-price">₹21,999</div>
+      <div class="course-meta">6 Weeks • Live Coding • Certificate</div>
+      <ul>
+        <li>Write real smart contracts (Solidity)</li>
+        <li>Deploy on testnet & mainnet</li>
+        <li>Build DeFi basics hands-on</li>
+        <li>Security best practices</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Enroll Now →</a>
+    </div>
+    
+    <div class="course-card">
+      <span class="course-badge badge-popular">BUSINESS</span>
+      <h3>Web3 Business</h3>
+      <div class="course-price">₹16,999</div>
+      <div class="course-meta">5 Weeks • Live + Case Studies • Certificate</div>
+      <ul>
+        <li>How crypto businesses make money</li>
+        <li>Tokenomics & market analysis (theory)</li>
+        <li>Community building strategies</li>
+        <li>Web3 marketing fundamentals</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Enroll Now →</a>
+    </div>
+    
+    <div class="course-card">
+      <span class="course-badge badge-popular">CAREER</span>
+      <h3>Web3 Project Manager</h3>
+      <div class="course-price">₹19,999</div>
+      <div class="course-meta">5 Weeks • Live + Projects • Certificate</div>
+      <ul>
+        <li>Manage Web3 projects & teams</li>
+        <li>DAOs & governance explained</li>
+        <li>Non-technical manager roles</li>
+        <li>Get job-ready for Web3 companies</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Enroll Now →</a>
+    </div>
+    
+    <div class="course-card">
+      <span class="course-badge badge-flagship">⭐ FLAGSHIP</span>
+      <h3>Crypto Intelligence</h3>
+      <div class="course-price">₹34,999</div>
+      <div class="course-meta">6 Weeks • Chainwise Platform Access • Certificate</div>
+      <ul>
+        <li>Deep token research & analysis</li>
+        <li>On-chain data investigation</li>
+        <li>Due diligence like a professional</li>
+        <li>Integrated with Chainwise platform</li>
+        <li>Become a crypto analyst</li>
+      </ul>
+      <a href="#enquiry" class="btn btn-primary">Enroll Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <h2>How Learning <span class="accent-text">Works</span></h2>
+  <p class="section-subtitle">⚡ Simple Format • Made for Busy People</p>
+  
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🎥</div>
+      <h3>1. Live Weekly Class</h3>
+      <p>One live session per week (45-60 min), evening time. Recorded if you miss it. Ask questions directly to instructors.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">📲</div>
+      <h3>2. Learn on Telegram</h3>
+      <p>Private group for your batch. Short videos, notes, and doubt-solving on weekends. Learn from your phone.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">✍️</div>
+      <h3>3. One Simple Task Weekly</h3>
+      <p>One hands-on assignment per week — like creating a wallet or doing a test transaction. Practical, not just theory.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">🎓</div>
+      <h3>4. Get Your Certificate</h3>
+      <p>Complete the course, get your verified digital certificate within 24 hours. Share it anywhere.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>5. Join Alumni Elite</h3>
+      <p>30% off all future courses + lifetime benefits + networking with fellow learners and Web3 builders.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">💼</div>
+      <h3>6. Grow Your Career</h3>
+      <p>Access our Web3 network, job opportunities, and community. We help you take the next step.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section>
+  <h2>Who Is This <span class="accent-text">For?</span></h2>
+  <p class="section-subtitle">👥 Made For Common People — Not Just Techies</p>
+  
+  <div class="glass" style="padding: 2.5rem; max-width: 900px; margin: 0 auto;">
+    <div style="display: grid; gap: 1.2rem;">
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">✓ <strong style="color: var(--text-primary);">Students & job seekers</strong> — looking for new career opportunities in Web3</p>
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">✓ <strong style="color: var(--text-primary);">Working professionals</strong> — wanting to add crypto skills without quitting your job</p>
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">✓ <strong style="color: var(--text-primary);">Business owners</strong> — understanding how blockchain can grow your business</p>
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">✓ <strong style="color: var(--text-primary);">Network marketers & community builders</strong> — turning your people skills into Web3 careers</p>
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">✓ <strong style="color: var(--text-primary);">Complete beginners</strong> — zero crypto or coding knowledge needed. We start from zero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY FORM -->
+<section id="enquiry" style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Ready to <span class="accent-text">Start Learning?</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem;">
+    Send a quick enquiry and we'll help you choose the right course.
+  </p>
+  
+  <form class="enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Full name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    
+    <label for="purpose">Which Course Interests You?</label>
+    <select id="purpose" name="course" required>
+      <option value="" disabled selected>Select a course</option>
+      <option value="launchpad">LaunchPad (Free)</option>
+      <option value="crypto-foundation">Crypto Foundation (₹8,999)</option>
+      <option value="smart-contract-pro">Smart Contract Pro (₹21,999)</option>
+      <option value="web3-business">Web3 Business (₹16,999)</option>
+      <option value="web3-pm">Web3 Project Manager (₹19,999)</option>
+      <option value="crypto-intelligence">Crypto Intelligence (₹34,999)</option>
+      <option value="not-sure">Not Sure — Help Me Choose</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+  </form>
+  
+  <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 2rem;">
+    Or message us directly: 💬 <a href="https://t.me/asksatoshilab" style="color: var(--orange); font-weight: 700;">@asksatoshilab</a> on Telegram
+  </p>
+</section>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
+
+<footer>
+  <p>Satoshi Lab Academy • Learn. Build. Secure. Grow in Web3.</p>
+  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Global Offices: UAE • India | Building Web3 Worldwide</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+</body>
+</html>

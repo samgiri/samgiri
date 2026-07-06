@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Satoshi Lab | Learn Web3 Free</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.9);
+  border-bottom: 1px solid rgba(255, 107, 26, 0.2);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.hero-text {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  glass;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  height: 55px;
+  display: flex;
+  align-items: center;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(216, 255, 62, 0.12);
+  color: var(--volt);
+  border: 1px solid rgba(216, 255, 62, 0.4);
+  width: fit-content;
+}
+
+/* TOOL CARDS */
+.tool-card {
+  glass;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  background: rgba(255, 107, 26, 0.08);
+  border-color: rgba(255, 107, 26, 0.4);
+  transform: translateY(-3px);
+}
+
+.tool-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.tool-card h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.4rem;
+}
+
+.tool-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.grid-4 {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* COMMUNITY BANNER */
+.community-banner {
+  glass;
+  padding: 3rem;
+  text-align: center;
+  border: 2px solid rgba(255, 107, 26, 0.3);
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.08) 0%, rgba(216, 255, 62, 0.04) 100%);
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
+/* FOOTER */
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 107, 26, 0.2);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contact-info {
+  font-size: 1.05rem;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 0.5px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">Satoshi Lab</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="aurora_services.html">Services</a>
+      <a href="aurora_academy.html">Academy</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_hiring.html">Careers</a>
+    </div>
+  </nav-content>
+</nav>
+
+<!-- HERO -->
+<section style="text-align: center;">
+  <h1>Free <span class="accent-text">Resources</span></h1>
+  <p class="hero-text">
+    Start learning Web3 for free. Simple guides, safety tips, and trusted tools — everything explained in plain language for beginners.
+  </p>
+  <a href="#guides" class="btn btn-primary">Explore Guides →</a>
+</section>
+
+<!-- BEGINNER GUIDES -->
+<section id="guides">
+  <h2>Beginner <span class="accent-text">Guides</span></h2>
+  <p class="section-subtitle">📖 Simple Explanations • No Tech Background Needed</p>
+  
+  <div class="grid">
+    <div class="card">
+      <span class="card-tag">Basics</span>
+      <div class="card-icon">🪙</div>
+      <h3>What is Bitcoin? Explained Simply</h3>
+      <p>Why was Bitcoin created? How does it work? Understand the world's first cryptocurrency in 10 minutes — no jargon.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+    
+    <div class="card">
+      <span class="card-tag">Basics</span>
+      <div class="card-icon">⛓️</div>
+      <h3>Blockchain in Plain Language</h3>
+      <p>Forget the technical talk. Blockchain explained with real-life examples anyone can understand — like a shared notebook nobody can cheat.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+    
+    <div class="card">
+      <span class="card-tag">Safety</span>
+      <div class="card-icon">🛡️</div>
+      <h3>How to Spot Crypto Scams</h3>
+      <p>Fake tokens, rug pulls, phishing links, "guaranteed returns" — learn the red flags BEFORE you lose money. Must-read for every beginner.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+    
+    <div class="card">
+      <span class="card-tag">Wallets</span>
+      <div class="card-icon">👛</div>
+      <h3>Create Your First Wallet Safely</h3>
+      <p>Step-by-step wallet setup. What is a seed phrase, why you must NEVER share it, and how to keep your crypto secure.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+    
+    <div class="card">
+      <span class="card-tag">Trading</span>
+      <div class="card-icon">🔄</div>
+      <h3>CEX vs DEX: Where to Buy Crypto</h3>
+      <p>Binance vs Uniswap — what's the difference? Understand exchanges, fees, and which option is right for beginners.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+    
+    <div class="card">
+      <span class="card-tag">Research</span>
+      <div class="card-icon">📋</div>
+      <h3>How to Read a Whitepaper</h3>
+      <p>Every crypto project has a whitepaper. Learn what to look for, which red flags matter, and how to judge a project in 10 minutes.</p>
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">Read Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED TOOLS -->
+<section>
+  <h2>Trusted <span class="accent-text">Tools</span></h2>
+  <p class="section-subtitle">🔧 The Tools We Use & Recommend</p>
+  
+  <div class="grid-4">
+    <div class="tool-card">
+      <div class="tool-icon">🦊</div>
+      <h4>MetaMask</h4>
+      <p>Most popular Web3 wallet for browsers & mobile</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">📊</div>
+      <h4>CoinGecko</h4>
+      <p>Check prices, market caps & project info</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">🔍</div>
+      <h4>Etherscan</h4>
+      <p>Explore transactions on the Ethereum blockchain</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">🔄</div>
+      <h4>Uniswap</h4>
+      <p>Leading decentralized exchange (DEX)</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">🔐</div>
+      <h4>Ledger</h4>
+      <p>Hardware wallet for maximum security</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">📈</div>
+      <h4>DexScreener</h4>
+      <p>Track token prices across all DEXs live</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">🛡️</div>
+      <h4>Token Sniffer</h4>
+      <p>Scan tokens for scam patterns before buying</p>
+    </div>
+    
+    <div class="tool-card">
+      <div class="tool-icon">⛽</div>
+      <h4>Gas Tracker</h4>
+      <p>Check Ethereum gas fees before transacting</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section>
+  <div class="community-banner">
+    <h2 style="margin-bottom: 1rem;">Join Our <span class="accent-text">Community</span></h2>
+    <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Get free Web3 tips, market updates, scam alerts, and course announcements. Ask questions anytime — our community helps each other grow.
+    </p>
+    
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+      <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">💬 Join Telegram</a>
+      <a href="https://wa.me/919625763256" class="btn btn-primary" target="_blank" style="background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);">📱 WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- READY TO LEARN MORE -->
+<section style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Want to Go <span class="accent-text">Deeper?</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
+    Free resources are the start. Our structured courses take you from beginner to Web3 professional — with certificates.
+  </p>
+  
+  <a href="aurora_academy.html" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">
+    Explore Academy Courses →
+  </a>
+</section>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
+
+<footer>
+  <p>Satoshi Lab • Web3 Engineering + Growth Studio</p>
+  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Global Offices: UAE • India | Building Web3 Worldwide</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+</body>
+</html>
