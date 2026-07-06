@@ -219,6 +219,98 @@ h2 {
   color: var(--text-secondary);
 }
 
+/* ENQUIRY FORM */
+.enquiry-form {
+  glass;
+  padding: 2.5rem;
+  max-width: 550px;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(255, 107, 26, 0.25);
+  text-align: left;
+}
+
+.enquiry-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.enquiry-form label:first-child {
+  margin-top: 0;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+.enquiry-form select option {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+}
+
+.enquiry-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
 /* FOOTER */
 footer {
   background: transparent;
@@ -257,9 +349,9 @@ footer p {
     </a>
     <div class="navlinks">
       <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
+      <a href="aurora_services.html">Services</a>
       <a href="aurora_academy.html">Academy</a>
-      <a href="aurora_hiring.html">Hiring</a>
+      <a href="aurora_hiring.html">Careers</a>
     </div>
   </nav-content>
 </nav>
@@ -268,7 +360,7 @@ footer p {
 <section style="text-align: center;">
   <h1>About <span class="accent-text">Satoshi Lab</span></h1>
   <p class="hero-text">
-    Web3 engineering studio based in Dubai. We build smart contracts, products, and communities. Operating 8 business verticals across Web3, education, fintech, real estate, and technology.
+    A global Web3 engineering studio. We build smart contracts, products, and communities for founders worldwide. Operating 8 business verticals across Web3, education, fintech, and technology.
   </p>
 </section>
 
@@ -278,7 +370,7 @@ footer p {
   
   <div class="glass" style="padding: 3rem; margin: 2rem auto; max-width: 950px;">
     <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
-      Satoshi Lab is a Web3 engineering and growth studio founded under Braindeck Infotech Private Limited. We are a team of developers, designers, community managers, and growth strategists dedicated to helping Web3 projects build, launch, and scale successfully.
+      Satoshi Lab is a global Web3 engineering and growth studio. We are a team of developers, designers, community managers, and growth strategists dedicated to helping Web3 projects build, launch, and scale successfully — wherever they are in the world.
     </p>
     
     <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
@@ -302,7 +394,7 @@ footer p {
     <div class="card">
       <h3>🚀 Our Mission</h3>
       <p>
-        Operate 8 integrated verticals spanning Web3 engineering, education, fintech, real estate, and community development. Provide comprehensive solutions—from smart contracts to community management to due diligence. Partner with founders from day one.
+        Operate 8 integrated verticals spanning Web3 engineering, education, fintech, and community development. Provide comprehensive solutions—from smart contracts to community management to due diligence. Partner with founders from day one.
       </p>
     </div>
     
@@ -378,9 +470,9 @@ footer p {
     </div>
     
     <div class="card">
-      <h3>Dubai HQ + Global Team</h3>
+      <h3>Global Team, Global Reach</h3>
       <p>
-        Based in Dubai with operations across India and Asia. We understand Middle East, South Asia, and global markets.
+        Offices in the UAE and India with a team spanning multiple timezones. We serve founders across Asia, Middle East, Europe, and the Americas.
       </p>
     </div>
     
@@ -416,54 +508,72 @@ footer p {
 
 <!-- COMPANY INFO -->
 <section>
-  <h2>Company <span class="accent-text">Details</span></h2>
+  <h2>Our <span class="accent-text">Offices</span></h2>
   
   <div class="glass" style="padding: 2.5rem; margin: 2rem auto; max-width: 900px;">
     <div style="margin-bottom: 2rem;">
-      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">Legal Entity</p>
-      <p style="font-size: 1.05rem; color: var(--text-primary);">Braindeck Infotech Private Limited</p>
-      <p style="font-size: 0.95rem; color: var(--text-secondary);">CIN: U72100DL2010PTC206927 | PAN: AAICA7486P</p>
-      <p style="font-size: 0.95rem; color: var(--text-secondary);">Incorporated: August 2010 | Delhi, India</p>
-    </div>
-    
-    <div style="height: 1px; background: rgba(255, 107, 26, 0.2); margin: 2rem 0;"></div>
-    
-    <div style="margin-bottom: 2rem;">
-      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">Headquarters</p>
-      <p style="font-size: 1.05rem; color: var(--text-primary);">Dubai, UAE</p>
-      <p style="font-size: 0.95rem; color: var(--text-secondary);">Timezone: UTC+4</p>
+      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">🌍 Global Presence</p>
+      <p style="font-size: 1.05rem; color: var(--text-primary);">Offices in UAE & India</p>
+      <p style="font-size: 0.95rem; color: var(--text-secondary);">Serving clients across Asia, Middle East, Europe, and the Americas</p>
     </div>
     
     <div style="height: 1px; background: rgba(255, 107, 26, 0.2); margin: 2rem 0;"></div>
     
     <div>
-      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">Operations</p>
-      <p style="font-size: 1.05rem; color: var(--text-primary);">Dubai, UAE • Delhi & Bangalore, India</p>
-      <p style="font-size: 0.95rem; color: var(--text-secondary);">Serving clients across Asia, Middle East, Europe, and North America</p>
+      <p style="font-size: 0.95rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">Legal Entity</p>
+      <p style="font-size: 1.05rem; color: var(--text-primary);">Braindeck Infotech Private Limited</p>
+      <p style="font-size: 0.95rem; color: var(--text-secondary);">Established 2010</p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section style="text-align: center;">
-  <h2 style="margin-bottom: 1.5rem;">Let's <span class="accent-text">Work Together</span></h2>
-  <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
-    Have a Web3 project? Need a partner to build or scale? Let's talk.
+<!-- ENQUIRY FORM + CTA -->
+<section id="enquiry" style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Let's <span class="accent-text">Work Together</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem;">
+    Have a Web3 project? Need a partner to build or scale? Send us a quick enquiry.
   </p>
   
-  <a href="mailto:info@satoshilab.ai" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
-    Send Email →
-  </a>
+  <form class="enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Full name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    
+    <label for="purpose">Purpose</label>
+    <select id="purpose" name="purpose" required>
+      <option value="" disabled selected>Select purpose</option>
+      <option value="project">Start a Project</option>
+      <option value="academy">Join Academy Course</option>
+      <option value="audit">Smart Contract Audit</option>
+      <option value="community">Community Management</option>
+      <option value="partnership">Partnership</option>
+      <option value="other">Other</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+  </form>
   
   <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 2rem;">
-    💬 @asksatoshilab on Telegram
+    Or connect instantly: 💬 <a href="https://t.me/asksatoshilab" style="color: var(--orange); font-weight: 700;">@asksatoshilab</a> on Telegram
   </p>
 </section>
 
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
+
 <footer>
   <p>Satoshi Lab • Web3 Engineering + Growth Studio</p>
-  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab  |  ☎️ +971 4 XXXX XXXX</div>
-  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Dubai, UAE • Braindeck Infotech • Building Web3</p>
+  <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Global Offices: UAE • India | Building Web3 Worldwide</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>

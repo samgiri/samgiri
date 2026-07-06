@@ -192,6 +192,20 @@ h2 {
   .grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+.grid-4 {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
 .card {
   glass;
   padding: 2rem;
@@ -209,16 +223,34 @@ h2 {
   transform: translateY(-3px);
 }
 
+.service-card {
+  glass;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border: 2px solid rgba(255, 107, 26, 0.25);
+  transition: all 0.3s ease;
+  background: rgba(255, 107, 26, 0.05);
+}
+
+.service-card:hover {
+  background: rgba(255, 107, 26, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 107, 26, 0.2);
+}
+
 .card-icon {
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: var(--orange);
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
 }
 
 .card h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -237,6 +269,39 @@ h2 {
   margin-top: 0.5rem;
   padding: 0.8rem 1.5rem;
   font-size: 0.9rem;
+}
+
+.vertical-card {
+  glass;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.vertical-card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.vertical-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.vertical-card h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.vertical-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
 }
 
 /* HERO */
@@ -461,13 +526,49 @@ h1 {
   transform: translateY(-5px);
 }
 
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
 /* FOOTER */
 footer {
-  background: rgba(20, 24, 41, 0.6);
-  backdrop-filter: blur(20px);
+  background: transparent;
   border-top: 1px solid rgba(255, 107, 26, 0.2);
-  padding: 3.5rem 2rem 2rem;
+  padding: 3rem 2rem 2rem;
   text-align: center;
+  margin-top: 2rem;
 }
 
 footer-content {
@@ -504,6 +605,24 @@ footer p {
   opacity: 0.8;
 }
 
+/* HIGHLIGHT BOX */
+.highlight-banner {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.15) 0%, rgba(216, 255, 62, 0.05) 100%);
+  border: 2px solid rgba(255, 107, 26, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.highlight-banner p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 </style>
 </head>
 <body>
@@ -515,24 +634,29 @@ footer p {
       <span class="logo-text">Satoshi Lab</span>
     </a>
     <div class="navlinks">
-      <a href="#services">Services</a>
+      <a href="aurora_services.html">Services</a>
+      <a href="#verticals">Verticals</a>
       <a href="#academy">Academy</a>
-      <a href="#chainwise">Chainwise</a>
-      <a href="#events">Events</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_hiring.html">Careers</a>
     </div>
   </nav-content>
 </nav>
 
 <!-- HERO -->
 <header>
+  <div style="margin-bottom: 2rem;">
+    <img src="satoshi-lab-logo.png" alt="Satoshi Lab Logo" style="max-width: 300px; height: auto; margin: 0 auto; display: block;">
+  </div>
+  
   <h1>Build it.<br>Launch it.<br><span class="accent-text">Own it.</span></h1>
   <p class="hero-text">
-    Web3 Engineering Studio in Dubai. Build smart contracts. Launch tokens. Grow communities. Scale globally.
+    Web3 Engineering Studio. Build smart contracts. Launch tokens. Grow communities. Operate 8 business verticals across Web3, education, fintech, and technology.
   </p>
   
   <div class="ctas">
     <a href="#contact" class="btn btn-primary">Start Project →</a>
-    <a href="#services" class="btn btn-secondary">Explore</a>
+    <a href="#services" class="btn btn-secondary">Explore Services</a>
   </div>
   
   <div class="stats">
@@ -555,140 +679,181 @@ footer p {
   </div>
 </header>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About <span class="accent-text">Satoshi Lab</span></h2>
-  <p class="section-subtitle">Web3 Engineering + Growth Studio</p>
-  
-  <div class="glass" style="padding: 2.5rem; margin: 0 auto; max-width: 900px;">
-    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
-      We help Web3 projects build smart contracts, products, and communities. Based in Dubai. Operating 8 business verticals across Web3, education, fintech, real estate, and technology. We're not just developers — we're partners in your launch.
-    </p>
-  </div>
-</section>
-
-<!-- SERVICES -->
+<!-- SERVICES - HIGHLIGHTED FIRST -->
 <section id="services">
-  <h2>Satoshi Lab <span class="accent-text">Services</span></h2>
-  <p class="section-subtitle">⚙️ Blockchain • Products • Community • Growth</p>
+  <div class="highlight-banner">
+    <p>✨ Core Services - Full-Stack Web3 Solutions</p>
+  </div>
+  
+  <h2>What We <span class="accent-text">Deliver</span></h2>
+  <p class="section-subtitle">🚀 6 Core Services • One Studio • Full Accountability</p>
   
   <div class="grid">
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">⛓️</div>
       <h3>Smart Contracts</h3>
-      <p>Code for Ethereum, Polygon, BNB, Base. Deploy tokens. Build DeFi. Security first.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Learn</a>
+      <p>Code for Ethereum, Polygon, BNB, Base. Deploy tokens. Build DeFi protocols. Audited for security.</p>
+      <a href="aurora_services.html#smart-contracts" class="btn btn-primary">Learn More →</a>
     </div>
     
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">💻</div>
-      <h3>Web3 Apps</h3>
-      <p>Build dApps. Wallets. Dashboards. Full products from idea to mainnet.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Explore</a>
+      <h3>Web3 Products</h3>
+      <p>Build dApps. Wallets. Dashboards. Token-gated platforms. Full products from idea to mainnet.</p>
+      <a href="aurora_services.html#web3-apps" class="btn btn-primary">Learn More →</a>
     </div>
     
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">🤖</div>
-      <h3>AI & Bots</h3>
-      <p>Telegram bots. Discord bots. AI agents. Automate everything.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Discover</a>
+      <h3>AI & Automation</h3>
+      <p>Telegram/Discord bots. LLM agents. Workflow automation. Eliminate manual work.</p>
+      <a href="aurora_services.html#ai-automation" class="btn btn-primary">Learn More →</a>
     </div>
     
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">🔐</div>
-      <h3>Security Audit</h3>
-      <p>Check your code. Find bugs. Multisig setup. Key management.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Audit</a>
+      <h3>Security Audits</h3>
+      <p>Contract reviews. Code audits. Find bugs before launch. Multisig setup. Key management.</p>
+      <a href="aurora_services.html#security-audits" class="btn btn-primary">Learn More →</a>
     </div>
     
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">👥</div>
-      <h3>Community</h3>
-      <p>Manage Telegram & Discord. Engage members. Grow followers.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Build</a>
+      <h3>Community Management</h3>
+      <p>Manage Telegram & Discord. Engage members. Grow followers. 24/7 operations.</p>
+      <a href="aurora_services.html#community" class="btn btn-primary">Learn More →</a>
     </div>
     
-    <div class="card">
+    <div class="service-card">
       <div class="card-icon">📢</div>
       <h3>Launch PR</h3>
-      <p>Press releases. Media coverage. KOL partnerships. Launch hype.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Launch</a>
+      <p>Press releases. 1,800+ media outlets. KOL partnerships. Launch-day momentum.</p>
+      <a href="aurora_services.html#launch-pr" class="btn btn-primary">Learn More →</a>
     </div>
   </div>
 </section>
 
-<!-- ACADEMY -->
+<!-- VISION & MISSION -->
+<section id="vision">
+  <h2>Vision & <span class="accent-text">Mission</span></h2>
+  <p class="section-subtitle">Building the Web3 Ecosystem</p>
+  
+  <div class="glass" style="padding: 3rem; margin: 0 auto; max-width: 950px;">
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--orange);">OUR VISION</h3>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+        Become the leading Web3 engineering and growth studio globally. Empower developers, founders, and communities to build, launch, and scale Web3 projects with confidence.
+      </p>
+    </div>
+    <div style="height: 1px; background: rgba(255, 107, 26, 0.2); margin: 2rem 0;"></div>
+    <div>
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--orange);">OUR MISSION</h3>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+        Operate 8 integrated verticals spanning Web3 engineering, education, fintech, real estate, and community development. Provide comprehensive solutions for crypto projects—from smart contracts to community management to due diligence. Partner with founders from day one.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 VERTICALS -->
+<section id="verticals">
+  <h2>Satoshi Lab <span class="accent-text">Verticals</span></h2>
+  <p class="section-subtitle">🚀 8 Integrated Business Lines</p>
+  
+  <div class="grid-4">
+    <div class="vertical-card">
+      <div class="vertical-icon">🎓</div>
+      <h4>Academy</h4>
+      <p>Learn Web3. Ignite, Build, Launch. Training for all levels.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🔎</div>
+      <h4>Chainwise</h4>
+      <p>Crypto Investigation & Verification. Market Intelligence.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🛡️</div>
+      <h4>Smart Contract Audits</h4>
+      <p>Security Reviews. Code audits. Find bugs before launch.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🌍</div>
+      <h4>Community Agency</h4>
+      <p>Manage communities. Telegram, Discord. Build engagement.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">💼</div>
+      <h4>Web3 Job Board</h4>
+      <p>Connect talent with opportunities. Build teams.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">📊</div>
+      <h4>Research & Due Diligence</h4>
+      <p>Project analysis. Risk assessment. Smart decisions.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🏆</div>
+      <h4>Annual Certification</h4>
+      <p>Web3 Professional Certification. Industry-recognized.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🤝</div>
+      <h4>Corporate Training</h4>
+      <p>University & Corporate Programs. Web3 for enterprises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY - MAIN COURSES -->
 <section id="academy">
-  <h2><span class="accent-text">Satoshi Lab</span> Academy</h2>
-  <p class="section-subtitle">📚 Learn Web3 • Build • Launch</p>
+  <h2>Satoshi Lab <span class="accent-text">Academy</span></h2>
+  <p class="section-subtitle">📚 Learn Web3 The Right Way</p>
   
   <div class="grid">
     <div class="card">
-      <div class="card-icon">📖</div>
-      <h3>Beginner Course</h3>
-      <p>Learn blockchain basics. How crypto works. No code needed. Free intro included.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Start</a>
+      <div class="card-icon">🔥</div>
+      <h3>Ignite</h3>
+      <p>Learn blockchain basics. How crypto works. Foundation for everyone. No coding required. Start here.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Start Free</a>
     </div>
     
     <div class="card">
-      <div class="card-icon">💡</div>
-      <h3>Smart Contract Code</h3>
-      <p>Write Solidity. Deploy contracts. Build DeFi protocols. Hands-on training.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Enroll</a>
+      <div class="card-icon">💪</div>
+      <h3>Build</h3>
+      <p>Write smart contracts. Solidity. Deploy on mainnet. Build DeFi protocols. Hands-on development.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Enroll Now</a>
     </div>
     
     <div class="card">
       <div class="card-icon">🚀</div>
-      <h3>Launch Your Token</h3>
-      <p>Build token. Launch. Manage community. Grow. Complete ecosystem.</p>
-      <a href="aurora_academy.html" class="btn btn-primary">Join</a>
+      <h3>Launch</h3>
+      <p>Build your token. Launch to market. Manage community. Grow investors. Complete go-to-market.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Join Cohort</a>
     </div>
   </div>
 </section>
 
-<!-- CHAINWISE -->
+<!-- CHAINWISE PLATFORM -->
 <section id="chainwise">
   <h2><span class="accent-text">Chainwise</span> Platform</h2>
-  <p class="section-subtitle">🔍 Blockchain Data • Intelligence • Verification</p>
+  <p class="section-subtitle">🔍 Blockchain Data & Intelligence</p>
   
   <div class="glass" style="padding: 2.5rem; margin: 0 auto; max-width: 900px;">
     <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
-      Real-time blockchain data. Token investigation. Project verification. Market intelligence. Due diligence tools for smart investors and builders. Know what you're getting into.
+      Real-time blockchain data. Token investigation. Project verification. Market intelligence. Due diligence tools for investors and builders. Know what you're getting into before you commit.
     </p>
-    <a href="aurora_academy.html" class="btn btn-primary" style="margin-top: 1.5rem;">Explore Chainwise →</a>
+    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Explore Chainwise →</a>
   </div>
 </section>
 
-<!-- WEB3 EVENTS -->
-<section id="events">
-  <h2>Web3 <span class="accent-text">Events & Bootcamps</span></h2>
-  <p class="section-subtitle">🎯 Workshops • Hackathons • Summits</p>
-  
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">🎓</div>
-      <h3>Web3 Bootcamp</h3>
-      <p>2-week intensive. Learn blockchain. Smart contracts. Go-to-market. Live mentorship.</p>
-      <a href="#contact" class="btn btn-primary">Register</a>
-    </div>
-    
-    <div class="card">
-      <div class="card-icon">💡</div>
-      <h3>Founders Summit</h3>
-      <p>Quarterly meetup. Network with builders. Share learnings. Find co-founders.</p>
-      <a href="#contact" class="btn btn-primary">Join</a>
-    </div>
-    
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>Hackathon Series</h3>
-      <p>Build in 48 hours. Compete. Win prizes. Showcase projects.</p>
-      <a href="#contact" class="btn btn-primary">Participate</a>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
+<!-- HOW WE WORK -->
 <section id="process">
   <h2>How We <span class="accent-text">Work</span></h2>
   <p class="section-subtitle">⚡ 5 Steps From Idea to Launch</p>
@@ -697,12 +862,12 @@ footer p {
     <div class="process-step">
       <span class="step-number">1</span>
       <h4>Talk</h4>
-      <p>Free discussion. Your goals.</p>
+      <p>Free discussion. Your goals. What matters.</p>
     </div>
     <div class="process-step">
       <span class="step-number">2</span>
       <h4>Plan</h4>
-      <p>Write plan. Timeline. Price.</p>
+      <p>Written plan. Timeline. Fixed price.</p>
     </div>
     <div class="process-step">
       <span class="step-number">3</span>
@@ -712,12 +877,12 @@ footer p {
     <div class="process-step">
       <span class="step-number">4</span>
       <h4>Ship</h4>
-      <p>Go live. PR. Community.</p>
+      <p>Go live. PR push. Community activation.</p>
     </div>
     <div class="process-step">
       <span class="step-number">5</span>
       <h4>Handover</h4>
-      <p>Your code. Your keys. Own it.</p>
+      <p>Your code. Your keys. Own everything.</p>
     </div>
   </div>
 </section>
@@ -757,20 +922,23 @@ footer p {
 
 <footer>
   <footer-content>
-    <p>🚀 SATOSHI LAB</p>
-    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Web3 Engineering + Growth Studio</p>
+    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Satoshi Lab • Web3 Engineering + Growth Studio</p>
     
-    <div class="contact-info">📧 info@satoshilab.ai</div>
-    <div class="contact-info">💬 @asksatoshilab (Telegram)</div>
-    <div class="contact-info">☎️ +971 4 XXXX XXXX</div>
+    <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab  |  ☎️ +971 4 XXXX XXXX</div>
     
-    <div class="footer-divider"></div>
-    
-    <div class="footer-bottom">
-      <p>Dubai, UAE • Braindeck Infotech • Building Web3</p>
-    </div>
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Dubai, UAE • Braindeck Infotech • Building Web3</p>
   </footer-content>
 </footer>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
