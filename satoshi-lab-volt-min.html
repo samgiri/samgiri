@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoshi Lab — VOLT (minimal preview)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --ink:#101010; --paper:#F4F0E6; --volt:#D8FF3E; --orange:#FF6B1A; --violet:#7C5CFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--volt)}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo','Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.black{font-family:'Archivo Black','Archivo',sans-serif}
+.mono{font-family:'Space Mono',monospace}
+.shadow3{box-shadow:3px 3px 0 var(--ink)}
+.shadow5{box-shadow:5px 5px 0 var(--ink)}
+.shadow6{box-shadow:6px 6px 0 var(--ink)}
+.card{background:#fff;border:3px solid var(--ink);border-radius:14px}
+.btn-pop{display:inline-block;border:3px solid var(--ink);border-radius:12px;font-weight:900;text-transform:uppercase;font-size:.85rem;padding:1rem 1.75rem;box-shadow:6px 6px 0 var(--ink);transition:all .15s ease;cursor:pointer}
+.btn-pop:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn-pop:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.tilt{transition:transform .25s ease}
+.tilt:hover{transform:rotate(-1deg) scale(1.02)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--paper);border-bottom:3px solid var(--ink)}
+.logo{display:flex;align-items:center;gap:.75rem;font-weight:900;text-transform:uppercase;font-size:1.1rem}
+.logo-mark{width:40px;height:40px;display:block}
+.logo .mark{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-weight:900;background:var(--volt);border:3px solid var(--ink);border-radius:10px}
+.navlinks{display:none;align-items:center;gap:1.75rem;font-weight:700;font-size:.85rem;text-transform:uppercase}
+.navlinks a:hover{text-decoration:underline;text-decoration-thickness:4px}
+.nav-cta{background:var(--ink);color:var(--volt);border:3px solid var(--ink);border-radius:10px;padding:.6rem 1.25rem;font-weight:900;box-shadow:5px 5px 0 var(--orange);transition:all .15s ease}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--orange);text-decoration:none!important}
+@media(min-width:768px){.navlinks{display:flex}nav{padding:1rem 2.5rem}}
+
+/* HERO */
+header{padding:4rem 1.25rem 3rem;max-width:72rem;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;font-weight:700;font-size:.7rem;text-transform:uppercase;background:#fff;border:3px solid var(--ink);border-radius:999px;margin-bottom:2rem}
+.dot{width:10px;height:10px;border-radius:50%;background:#2ED573;border:2px solid var(--ink)}
+h1{font-size:clamp(3rem,9vw,7.5rem);text-transform:uppercase;line-height:.92;letter-spacing:-.02em;font-weight:900}
+.hl{display:inline-block;padding:0 1rem;background:var(--volt);border:4px solid var(--ink);border-radius:16px;transform:rotate(-1.5deg);box-shadow:8px 8px 0 var(--ink)}
+.stroke{-webkit-text-stroke:3px var(--ink);color:transparent}
+.lede{max-width:28rem;font-size:1.05rem;font-weight:500;line-height:1.6;margin:2.5rem 0 1.5rem}
+.ctas{display:flex;flex-wrap:wrap;gap:1rem}
+.cta-orange{background:var(--orange);color:#fff}
+.cta-white{background:#fff}
+.stats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:3.5rem}
+.stat{padding:1rem 1.5rem;border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink)}
+.stat b{display:block;font-size:1.75rem;font-weight:900}
+.stat span{font-size:.6rem;font-weight:700;letter-spacing:.15em}
+
+/* MARQUEE */
+.marquee{overflow:hidden;padding:1rem 0;background:var(--ink);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.marquee-inner{display:flex;white-space:nowrap;font-weight:900;text-transform:uppercase;font-size:1.1rem;color:var(--volt);width:max-content;animation:marquee 22s linear infinite}
+.marquee-inner span{margin:0 1.25rem}
+.star{color:var(--orange)}
+
+/* SECTIONS */
+section{padding:5rem 1.25rem;max-width:72rem;margin:0 auto}
+h2{font-size:clamp(2rem,5vw,3.8rem);text-transform:uppercase;letter-spacing:-.02em;font-weight:900}
+.tag-volt{display:inline-block;padding:0 .5rem;background:var(--volt);border:3px solid var(--ink);border-radius:10px}
+.tag-orange{display:inline-block;padding:0 .5rem;background:var(--orange);color:#fff;border:3px solid var(--ink);border-radius:10px}
+.sub{font-weight:700;margin:.75rem 0 3rem}
+.grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.svc{padding:1.5rem}
+.svc .num{display:inline-block;padding:.25rem .75rem;font-weight:900;font-size:.85rem;border:2.5px solid var(--ink);border-radius:8px;margin-bottom:1rem}
+.svc h3{font-size:1.2rem;text-transform:uppercase;font-weight:900;margin-bottom:.5rem}
+.svc p{font-size:.875rem;font-weight:500;line-height:1.6}
+
+/* BANNER */
+.banner{background:var(--ink);color:var(--paper);border:3px solid var(--ink);border-radius:20px;box-shadow:10px 10px 0 var(--orange);padding:2.5rem}
+.banner .big{font-size:clamp(1.6rem,4vw,3rem);text-transform:uppercase;line-height:1.15;font-weight:900}
+.banner p{margin-top:1.25rem;max-width:32rem;color:#C9C5BA;font-weight:500;font-size:.95rem}
+
+/* FAQ */
+.faq-wrap{max-width:46rem;margin:0 auto}
+.faq{border:3px solid var(--ink);border-radius:14px;background:#fff;box-shadow:4px 4px 0 var(--ink);margin-bottom:1rem;overflow:hidden}
+.faq.open{background:var(--volt);box-shadow:6px 6px 0 var(--ink)}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem;text-align:left;font-weight:900;text-transform:uppercase;font-size:.95rem;background:none;border:none;cursor:pointer;font-family:inherit}
+.faq .a{display:none;padding:0 1.25rem 1.25rem;font-weight:500;font-size:.9rem;line-height:1.6}
+.faq.open .a{display:block}
+.chev{font-size:1.25rem;transition:transform .2s}
+.faq.open .chev{transform:rotate(45deg)}
+
+/* FOOTER */
+footer{border-top:3px solid var(--ink);padding:2rem 1.25rem;text-align:center;font-weight:700;font-size:.8rem;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="logo"><img src="sl-mark.svg" alt="Satoshi Lab" class="logo-mark" /> Satoshi Lab</a>
+  <div class="navlinks">
+    <a href="#services" style="text-decoration-color:var(--orange)">Services</a>
+    <a href="#process" style="text-decoration-color:var(--violet)">Process</a>
+    <a href="#faq" style="text-decoration-color:var(--volt)">FAQ</a>
+    <a href="#contact" class="nav-cta">Start →</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="badge shadow3"><span class="dot"></span> Accepting projects · Dubai UTC+4</div>
+  <h1 class="black">Build it.<br><span class="hl">Launch it.</span><br><span class="stroke">Own it.</span></h1>
+  <p class="lede">Satoshi Lab is the Web3 engineering + growth studio behind serious crypto launches. Contracts, dApps, AI tooling — plus the community and PR engine that makes launch day count. <strong>One team. Full accountability.</strong></p>
+  <div class="ctas">
+    <a href="#contact" class="btn-pop cta-orange">Start a project →</a>
+    <a href="#services" class="btn-pop cta-white">Services ↓</a>
+  </div>
+  <div class="stats">
+    <div class="stat tilt" style="background:var(--volt);transform:rotate(-2deg)"><b>6</b><span class="mono">VERTICALS</span></div>
+    <div class="stat tilt" style="background:#FFD6E8;transform:rotate(1.5deg)"><b>1,800+</b><span class="mono">MEDIA OUTLETS</span></div>
+    <div class="stat tilt" style="background:#CDE7FF;transform:rotate(-1deg)"><b>4+</b><span class="mono">CHAINS</span></div>
+    <div class="stat tilt" style="background:#E3D9FF;transform:rotate(2deg)"><b>UTC+4</b><span class="mono">DUBAI HQ</span></div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner" id="mq"></div>
+</div>
+
+<section id="services">
+  <h2 class="black">What we <span class="tag-volt">do</span></h2>
+  <p class="sub mono">// SIX VERTICALS · ONE STUDIO · ZERO VENDOR CHAOS</p>
+  <div class="grid">
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:var(--volt)">01</span><h3>Blockchain Dev</h3><p>Smart contracts &amp; token systems written for audits, not demos. Polygon · Ethereum · BNB · Base.</p></div>
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:#FFD6E8">02</span><h3>Web3 Products</h3><p>Full dApps — wallet flows, dashboards, token-gated platforms that actually ship.</p></div>
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:#CDE7FF">03</span><h3>AI &amp; Automation</h3><p>LLM agents, Telegram/Discord bots, workflow automation that kills manual ops.</p></div>
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:#FFE2C2">04</span><h3>Security Reviews</h3><p>Contract reviews, Safe multisig setup, key management. One bug = the treasury.</p></div>
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:#E3D9FF">05</span><h3>Community Growth</h3><p>Multi-country Telegram &amp; Discord ops. Moderated. Engaged. Retained.</p></div>
+    <div class="card svc tilt shadow6"><span class="num mono" style="background:#D6FFE3">06</span><h3>Launch PR</h3><p>Press across 1,800+ crypto outlets. KOLs that match your audience. Launch-day noise.</p></div>
+  </div>
+</section>
+
+<section style="padding-top:0;padding-bottom:2.5rem">
+  <div class="banner">
+    <div class="big black">No guaranteed moons.<br><span style="color:var(--volt)">No fake metrics.</span><br>Defined work. Delivered. <span style="color:var(--orange)">Yours.</span></div>
+    <p>In a space full of promises, our edge is boring: we tell you what we'll do, we do it, and we hand over everything — repos, channels, keys.</p>
+  </div>
+</section>
+
+<section id="process">
+  <h2 class="black" style="margin-bottom:3rem">5 steps. <span class="stroke" style="-webkit-text-stroke-width:2.5px">0 surprises.</span></h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+    <div class="card svc shadow5"><span class="num" style="background:var(--volt);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0">1</span><h3 style="font-size:.85rem;letter-spacing:.05em">Scope</h3><p style="font-size:.78rem">Free working session — your stage, your goals, what actually moves.</p></div>
+    <div class="card svc shadow5"><span class="num" style="background:var(--volt);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0">2</span><h3 style="font-size:.85rem;letter-spacing:.05em">Blueprint</h3><p style="font-size:.78rem">Written plan: deliverables, timeline, cost. Approved before work starts.</p></div>
+    <div class="card svc shadow5"><span class="num" style="background:var(--volt);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0">3</span><h3 style="font-size:.85rem;letter-spacing:.05em">Build</h3><p style="font-size:.78rem">Weekly demos + shared trackers from week one. Progress you can see.</p></div>
+    <div class="card svc shadow5" style="background:var(--volt)"><span class="num" style="background:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0">4</span><h3 style="font-size:.85rem;letter-spacing:.05em">Launch</h3><p style="font-size:.78rem">Deployment, PR push, community activation — timed to the hour.</p></div>
+    <div class="card svc shadow5"><span class="num" style="background:var(--volt);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0">5</span><h3 style="font-size:.85rem;letter-spacing:.05em">Handover</h3><p style="font-size:.78rem">Repos, keys, playbooks — all transferred. You own everything.</p></div>
+  </div>
+</section>
+
+<section id="faq" class="faq-wrap" style="padding-top:0">
+  <h2 class="black" style="text-align:center;margin-bottom:3rem;font-size:clamp(2rem,5vw,3.5rem)">Real <span class="tag-orange">answers</span></h2>
+  <div class="faq open"><button>What is Satoshi Lab? <span class="chev">+</span></button><div class="a">A Web3 engineering + growth studio in Dubai. We build blockchain products and run the launch — community, PR, campaigns — as one accountable team.</div></div>
+  <div class="faq"><button>Who do you work with? <span class="chev">+</span></button><div class="a">Token projects heading to TGE, DePIN platforms, Web3 startups, and founders tired of juggling four vendors for one launch.</div></div>
+  <div class="faq"><button>Guarantee listings or price? <span class="chev">+</span></button><div class="a">NO — and run from anyone who does. We deliver defined work: code, placements, community metrics. Markets do what markets do.</div></div>
+  <div class="faq"><button>How do we start? <span class="chev">+</span></button><div class="a">Free scoping call → written proposal with fixed milestones. Monthly work has a 30-day exit both ways.</div></div>
+  <div class="faq"><button>Related to SatoshiLabs / Trezor? <span class="chev">+</span></button><div class="a">No. Independent Dubai studio. Zero affiliation with SatoshiLabs s.r.o. (Trezor).</div></div>
+</section>
+
+<section id="contact" style="text-align:center;padding-top:1rem">
+  <a href="#" class="btn-pop cta-orange" style="font-size:1rem;padding:1.25rem 2.5rem">Start a project →</a>
+</section>
+
+<footer>Satoshi Lab · Dubai · UTC+4 — VOLT minimal preview</footer>
+
+<script>
+// Marquee content
+const items=["SMART CONTRACTS","TOKEN LAUNCHES","COMMUNITY OPS","CRYPTO PR","AI AUTOMATION","SECURITY","DUBAI · UTC+4"];
+document.getElementById('mq').innerHTML=[...items,...items,...items].map(t=>`<span>${t} <span class="star">★</span></span>`).join('');
+// FAQ accordion
+document.querySelectorAll('.faq button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement,wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq').forEach(f=>f.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

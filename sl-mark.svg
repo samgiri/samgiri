@@ -1,0 +1,28 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background (dark navy) -->
+  <rect width="40" height="40" fill="#0a0e27" rx="6"/>
+  
+  <!-- White S -->
+  <g fill="white">
+    <!-- S shape simplified -->
+    <path d="M 8 10 Q 14 10 14 14 Q 14 17 10 18 Q 14 19 14 22 Q 14 26 8 26 L 8 24 Q 12 24 12 22 Q 12 20 9 20 Q 12 19 12 17 Q 12 13 8 13 Z" />
+  </g>
+  
+  <!-- Orange L -->
+  <g fill="#FF6B1A">
+    <!-- L shape -->
+    <rect x="18" y="10" width="4" height="16" />
+    <rect x="18" y="24" width="8" height="2" />
+  </g>
+  
+  <!-- Yellow pixel scatter (top right) -->
+  <g fill="#D8FF3E">
+    <rect x="28" y="8" width="2" height="2" />
+    <rect x="32" y="8" width="2" height="2" />
+    <rect x="30" y="12" width="2" height="2" />
+    <rect x="34" y="12" width="2" height="2" />
+  </g>
+  
+  <!-- Border (ink) -->
+  <rect x="0.5" y="0.5" width="39" height="39" fill="none" stroke="#101010" stroke-width="1.5" rx="6"/>
+</svg>
