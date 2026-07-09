@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoshi Lab — Web3 Engineering + Growth Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --dark-bg: #0a0e27;
+  --dark-card: #141829;
+  --orange: #FF6B1A;
+  --orange-light: #FF8A47;
+  --volt: #D8FF3E;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b5c0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.glass {
+  background: rgba(20, 24, 41, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(255, 107, 26, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 107, 26, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 107, 26, 0.5);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 107, 26, 0.2);
+  border-color: var(--orange);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 14, 39, 0.9);
+  border-bottom: 1px solid rgba(255, 107, 26, 0.2);
+}
+
+nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: url('satoshi-lab-logo.png') center/contain no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navlinks {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navlinks a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--orange);
+}
+
+@media (min-width: 768px) {
+  .navlinks { display: flex; }
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.grid-4 {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.card {
+  glass;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.service-card {
+  glass;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border: 2px solid rgba(255, 107, 26, 0.25);
+  transition: all 0.3s ease;
+  background: rgba(255, 107, 26, 0.05);
+}
+
+.service-card:hover {
+  background: rgba(255, 107, 26, 0.12);
+  border-color: rgba(255, 107, 26, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 107, 26, 0.2);
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: var(--orange);
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+.card .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.vertical-card {
+  glass;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.vertical-card:hover {
+  background: rgba(20, 24, 41, 0.6);
+  border-color: rgba(255, 107, 26, 0.3);
+  transform: translateY(-3px);
+}
+
+.vertical-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.vertical-card h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.vertical-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* HERO */
+header {
+  padding: 5rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text {
+  max-width: 650px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.ctas {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.stats {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat {
+  glass;
+  padding: 1.8rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 107, 26, 0.15);
+}
+
+.stat:hover {
+  background: rgba(20, 24, 41, 0.6);
+  transform: translateY(-3px);
+  border-color: rgba(255, 107, 26, 0.3);
+}
+
+.stat-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* PROCESS */
+.process-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.process-step {
+  glass;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 107, 26, 0.2);
+  transition: all 0.3s ease;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { border-color: rgba(255, 107, 26, 0.2); }
+  50% { border-color: rgba(255, 107, 26, 0.5); }
+}
+
+.process-step:hover {
+  background: rgba(255, 107, 26, 0.1);
+  transform: scale(1.05);
+  animation: none;
+  border-color: var(--orange);
+}
+
+.step-number {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--orange), var(--volt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+}
+
+.process-step h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.process-step p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* SOCIAL */
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+
+.social-link {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 2px solid;
+}
+
+.social-telegram {
+  background: rgba(0, 136, 204, 0.1);
+  border-color: #0088cc;
+  color: #0088cc;
+}
+
+.social-telegram:hover {
+  background: #0088cc;
+  color: white;
+  transform: translateY(-5px);
+}
+
+.social-instagram {
+  background: rgba(224, 48, 94, 0.1);
+  border-color: #E1306C;
+  color: #E1306C;
+}
+
+.social-instagram:hover {
+  background: #E1306C;
+  color: white;
+  transform: translateY(-5px);
+}
+
+.social-linkedin {
+  background: rgba(0, 119, 181, 0.1);
+  border-color: #0077B5;
+  color: #0077B5;
+}
+
+.social-linkedin:hover {
+  background: #0077B5;
+  color: white;
+  transform: translateY(-5px);
+}
+
+.social-twitter {
+  background: rgba(29, 161, 242, 0.1);
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.social-twitter:hover {
+  background: #1DA1F2;
+  color: white;
+  transform: translateY(-5px);
+}
+
+.social-medium {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.social-medium:hover {
+  background: #ffffff;
+  color: #000;
+  transform: translateY(-5px);
+}
+
+.social-youtube {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: #FF0000;
+  color: #FF0000;
+}
+
+.social-youtube:hover {
+  background: #FF0000;
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* FLOATING CONNECT BUTTONS */
+.float-connect {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.12);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-telegram {
+  background: #0088cc;
+}
+
+/* FOOTER */
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 107, 26, 0.2);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.contact-info {
+  font-size: 1.05rem;
+  color: var(--orange);
+  font-weight: 700;
+  margin: 0.8rem 0;
+  letter-spacing: 0.5px;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255, 107, 26, 0.2);
+  margin: 2rem 0 1.5rem;
+}
+
+.footer-bottom {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* HIGHLIGHT BOX */
+.highlight-banner {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.15) 0%, rgba(216, 255, 62, 0.05) 100%);
+  border: 2px solid rgba(255, 107, 26, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.highlight-banner p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <nav-content>
+    <a href="/" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">Satoshi Lab</span>
+    </a>
+    <div class="navlinks">
+      <a href="aurora_services.html">Services</a>
+      <a href="#verticals">Verticals</a>
+      <a href="#academy">Academy</a>
+      <a href="aurora_about.html">About</a>
+      <a href="aurora_hiring.html">Careers</a>
+    </div>
+  </nav-content>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div style="margin-bottom: 2rem;">
+    <img src="satoshi-lab-logo.png" alt="Satoshi Lab Logo" style="max-width: 300px; height: auto; margin: 0 auto; display: block;">
+  </div>
+  
+  <h1>Build it.<br>Launch it.<br><span class="accent-text">Own it.</span></h1>
+  <p class="hero-text">
+    Web3 Engineering Studio. Build smart contracts. Launch tokens. Grow communities. Operate 8 business verticals across Web3, education, fintech, and technology.
+  </p>
+  
+  <div class="ctas">
+    <a href="#contact" class="btn btn-primary">Start Project →</a>
+    <a href="#services" class="btn btn-secondary">Explore Services</a>
+  </div>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">8</div>
+      <div class="stat-label">Verticals</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1,800+</div>
+      <div class="stat-label">Press Placements</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Blockchains</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">Dubai</div>
+      <div class="stat-label">HQ</div>
+    </div>
+  </div>
+</header>
+
+<!-- SERVICES - HIGHLIGHTED FIRST -->
+<section id="services">
+  <div class="highlight-banner">
+    <p>✨ Core Services - Full-Stack Web3 Solutions</p>
+  </div>
+  
+  <h2>What We <span class="accent-text">Deliver</span></h2>
+  <p class="section-subtitle">🚀 6 Core Services • One Studio • Full Accountability</p>
+  
+  <div class="grid">
+    <div class="service-card">
+      <div class="card-icon">⛓️</div>
+      <h3>Smart Contracts</h3>
+      <p>Code for Ethereum, Polygon, BNB, Base. Deploy tokens. Build DeFi protocols. Audited for security.</p>
+      <a href="aurora_services.html#smart-contracts" class="btn btn-primary">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="card-icon">💻</div>
+      <h3>Web3 Products</h3>
+      <p>Build dApps. Wallets. Dashboards. Token-gated platforms. Full products from idea to mainnet.</p>
+      <a href="aurora_services.html#web3-apps" class="btn btn-primary">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="card-icon">🤖</div>
+      <h3>AI & Automation</h3>
+      <p>Telegram/Discord bots. LLM agents. Workflow automation. Eliminate manual work.</p>
+      <a href="aurora_services.html#ai-automation" class="btn btn-primary">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="card-icon">🔐</div>
+      <h3>Security Audits</h3>
+      <p>Contract reviews. Code audits. Find bugs before launch. Multisig setup. Key management.</p>
+      <a href="aurora_services.html#security-audits" class="btn btn-primary">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="card-icon">👥</div>
+      <h3>Community Management</h3>
+      <p>Manage Telegram & Discord. Engage members. Grow followers. 24/7 operations.</p>
+      <a href="aurora_services.html#community" class="btn btn-primary">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="card-icon">📢</div>
+      <h3>Launch PR</h3>
+      <p>Press releases. 1,800+ media outlets. KOL partnerships. Launch-day momentum.</p>
+      <a href="aurora_services.html#launch-pr" class="btn btn-primary">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section id="vision">
+  <h2>Vision & <span class="accent-text">Mission</span></h2>
+  <p class="section-subtitle">Building the Web3 Ecosystem</p>
+  
+  <div class="glass" style="padding: 3rem; margin: 0 auto; max-width: 950px;">
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--orange);">OUR VISION</h3>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+        Become the leading Web3 engineering and growth studio globally. Empower developers, founders, and communities to build, launch, and scale Web3 projects with confidence.
+      </p>
+    </div>
+    <div style="height: 1px; background: rgba(255, 107, 26, 0.2); margin: 2rem 0;"></div>
+    <div>
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--orange);">OUR MISSION</h3>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+        Operate 8 integrated verticals spanning Web3 engineering, education, fintech, real estate, and community development. Provide comprehensive solutions for crypto projects—from smart contracts to community management to due diligence. Partner with founders from day one.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 VERTICALS -->
+<section id="verticals">
+  <h2>Satoshi Lab <span class="accent-text">Verticals</span></h2>
+  <p class="section-subtitle">🚀 8 Integrated Business Lines</p>
+  
+  <div class="grid-4">
+    <div class="vertical-card">
+      <div class="vertical-icon">🎓</div>
+      <h4>Academy</h4>
+      <p>Learn Web3. Ignite, Build, Launch. Training for all levels.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🔎</div>
+      <h4>Chainwise</h4>
+      <p>Crypto Investigation & Verification. Market Intelligence.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🛡️</div>
+      <h4>Smart Contract Audits</h4>
+      <p>Security Reviews. Code audits. Find bugs before launch.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🌍</div>
+      <h4>Community Agency</h4>
+      <p>Manage communities. Telegram, Discord. Build engagement.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">💼</div>
+      <h4>Web3 Job Board</h4>
+      <p>Connect talent with opportunities. Build teams.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">📊</div>
+      <h4>Research & Due Diligence</h4>
+      <p>Project analysis. Risk assessment. Smart decisions.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🏆</div>
+      <h4>Annual Certification</h4>
+      <p>Web3 Professional Certification. Industry-recognized.</p>
+    </div>
+    
+    <div class="vertical-card">
+      <div class="vertical-icon">🤝</div>
+      <h4>Corporate Training</h4>
+      <p>University & Corporate Programs. Web3 for enterprises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY - MAIN COURSES -->
+<section id="academy">
+  <h2>Satoshi Lab <span class="accent-text">Academy</span></h2>
+  <p class="section-subtitle">📚 Learn Web3 The Right Way</p>
+  
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h3>Ignite</h3>
+      <p>Learn blockchain basics. How crypto works. Foundation for everyone. No coding required. Start here.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Start Free</a>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">💪</div>
+      <h3>Build</h3>
+      <p>Write smart contracts. Solidity. Deploy on mainnet. Build DeFi protocols. Hands-on development.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Enroll Now</a>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">🚀</div>
+      <h3>Launch</h3>
+      <p>Build your token. Launch to market. Manage community. Grow investors. Complete go-to-market.</p>
+      <a href="aurora_academy.html" class="btn btn-primary">Join Cohort</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHAINWISE PLATFORM -->
+<section id="chainwise">
+  <h2><span class="accent-text">Chainwise</span> Platform</h2>
+  <p class="section-subtitle">🔍 Blockchain Data & Intelligence</p>
+  
+  <div class="glass" style="padding: 2.5rem; margin: 0 auto; max-width: 900px;">
+    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+      Real-time blockchain data. Token investigation. Project verification. Market intelligence. Due diligence tools for investors and builders. Know what you're getting into before you commit.
+    </p>
+    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Explore Chainwise →</a>
+  </div>
+</section>
+
+<!-- WEB3 EVENTS & SUMMITS -->
+<section id="events">
+  <h2>Web3 <span class="accent-text">Events & Summits</span></h2>
+  <p class="section-subtitle">🎯 Summits • Networking • Bootcamps • Workshops</p>
+  
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🎤</div>
+      <h3>Blockchain Summit</h3>
+      <p>Annual flagship summit bringing together founders, investors, and builders. Keynotes, panels, and project showcases from the Web3 ecosystem.</p>
+      <a href="#contact" class="btn btn-primary">Get Notified</a>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>Networking Events</h3>
+      <p>Monthly meetups connecting Web3 founders, developers, and investors. Find co-founders, partners, and opportunities in person.</p>
+      <a href="#contact" class="btn btn-primary">Join Next Event</a>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Bootcamps & Workshops</h3>
+      <p>Intensive hands-on training events. Learn blockchain, smart contracts, and Web3 business in focused sessions with live mentorship.</p>
+      <a href="#contact" class="btn btn-primary">Register Interest</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="process">
+  <h2>How We <span class="accent-text">Work</span></h2>
+  <p class="section-subtitle">⚡ 5 Steps From Idea to Launch</p>
+  
+  <div class="process-grid">
+    <div class="process-step">
+      <span class="step-number">1</span>
+      <h4>Talk</h4>
+      <p>Free discussion. Your goals. What matters.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-number">2</span>
+      <h4>Plan</h4>
+      <p>Written plan. Timeline. Fixed price.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-number">3</span>
+      <h4>Build</h4>
+      <p>Code. Deploy. Weekly updates.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-number">4</span>
+      <h4>Ship</h4>
+      <p>Go live. PR push. Community activation.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-number">5</span>
+      <h4>Handover</h4>
+      <p>Your code. Your keys. Own everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="text-align: center;">
+  <h2 style="margin-bottom: 1rem;">Ready to <span class="accent-text">Work Together?</span></h2>
+  <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
+    Connect with us. Let's build something great.
+  </p>
+  
+  <div class="social-links">
+    <a href="https://t.me/asksatoshilab" class="social-link social-telegram" title="Telegram">
+      <i class="fab fa-telegram"></i>
+    </a>
+    <a href="https://instagram.com/satoshilab" class="social-link social-instagram" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://linkedin.com/company/satoshi-lab" class="social-link social-linkedin" title="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://twitter.com/satoshilab" class="social-link social-twitter" title="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://medium.com/@satoshilab" class="social-link social-medium" title="Medium">
+      <i class="fab fa-medium"></i>
+    </a>
+    <a href="https://youtube.com/@satoshilab" class="social-link social-youtube" title="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+  </div>
+  
+  <a href="mailto:info@satoshilab.ai" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+    Send Email →
+  </a>
+</section>
+
+<footer>
+  <footer-content>
+    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Satoshi Lab • Web3 Engineering + Growth Studio</p>
+    
+    <div class="contact-info">📧 info@satoshilab.ai  |  💬 @asksatoshilab</div>
+    
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1.5rem; opacity: 0.7;">Dubai, UAE • Braindeck Infotech • Building Web3</p>
+  </footer-content>
+</footer>
+
+<!-- FLOATING CONNECT BUTTONS -->
+<div class="float-connect">
+  <a href="https://wa.me/919625763256" class="float-btn float-whatsapp" title="Chat on WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/asksatoshilab" class="float-btn float-telegram" title="Chat on Telegram" target="_blank">
+    <i class="fab fa-telegram"></i>
+  </a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+</body>
+</html>
