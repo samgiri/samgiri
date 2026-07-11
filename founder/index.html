@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sam Giri — Founder, Satoshi Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --navy:#0a0e27;
+  --navy-deep:#050711;
+  --orange:#FF6B1A;
+  --orange-soft:#FFB37A;
+  --volt:#D8FF3E;
+  --ink:#F5F7FF;
+  --ink-dim:#9AA1C9;
+  --glass:rgba(255,255,255,0.055);
+  --glass-strong:rgba(255,255,255,0.09);
+  --border:rgba(255,255,255,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--navy-deep);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:2.5rem 1.25rem 4rem;
+  position:relative;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Aurora background */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--navy-deep)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 22s ease-in-out infinite}
+.b1{width:420px;height:420px;background:radial-gradient(circle,var(--orange),transparent 70%);top:-120px;left:-100px;animation-duration:26s}
+.b2{width:380px;height:380px;background:radial-gradient(circle,var(--volt),transparent 70%);top:520px;right:-140px;opacity:.26;animation-duration:30s;animation-delay:-6s}
+.b3{width:320px;height:320px;background:radial-gradient(circle,#3F4CFF,transparent 70%);top:900px;left:-80px;opacity:.22;animation-duration:34s;animation-delay:-12s}
+.b4{width:340px;height:340px;background:radial-gradient(circle,var(--orange),transparent 70%);top:1250px;right:-100px;opacity:.2;animation-duration:28s;animation-delay:-4s}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(40px,-30px) scale(1.08)}
+  66%{transform:translate(-30px,25px) scale(0.95)}
+}
+@media (prefers-reduced-motion:reduce){.blob{animation:none}}
+
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Card */
+.card{
+  position:relative;z-index:2;
+  width:100%;max-width:400px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:28px;
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  padding:2.6rem 1.6rem 2rem;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+  animation:rise .7s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* Avatar */
+.avatar-wrap{display:flex;justify-content:center;margin-bottom:1.1rem}
+.avatar{
+  width:88px;height:88px;border-radius:50%;
+  background:linear-gradient(155deg,var(--orange) 0%,var(--orange) 55%,var(--volt) 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.9rem;color:var(--navy);
+  border:3px solid rgba(255,255,255,.15);
+  box-shadow:0 12px 30px -8px rgba(255,107,26,.5);
+}
+
+.name{text-align:center;font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+.role{text-align:center;color:var(--orange-soft);font-size:.82rem;font-weight:600;margin-top:.3rem;letter-spacing:.02em}
+.org{text-align:center;color:var(--ink-dim);font-size:.78rem;font-weight:500;margin-top:.15rem}
+
+.status{display:flex;align-items:center;justify-content:center;gap:.45rem;margin:1.1rem 0 1.4rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--volt);box-shadow:0 0 8px var(--volt);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:1.5rem 0}
+
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-soft);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Verticals */
+.verticals{display:flex;flex-wrap:wrap;gap:.5rem}
+.pill{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:500;padding:.4rem .75rem;border:1px solid var(--border);border-radius:999px;color:var(--ink-dim);background:rgba(255,255,255,.03)}
+
+/* Work items */
+.work{border:1px solid var(--border);border-radius:16px;padding:1rem 1.1rem;margin-bottom:.7rem;background:rgba(255,255,255,.025)}
+.work:last-child{margin-bottom:0}
+.work-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.35rem}
+.work-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.92rem}
+.tag{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .55rem;border-radius:999px;white-space:nowrap}
+.tag-live{background:rgba(216,255,62,.15);color:var(--volt);border:1px solid rgba(216,255,62,.35)}
+.tag-build{background:rgba(255,107,26,.15);color:var(--orange-soft);border:1px solid rgba(255,107,26,.35)}
+.work-desc{font-size:.78rem;color:var(--ink-dim);line-height:1.5}
+.work-meta{margin-top:.5rem;font-size:.68rem;color:var(--ink-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em}
+
+.course-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.course-pill{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:500;padding:.35rem .65rem;border-radius:8px;background:rgba(255,107,26,.1);border:1px solid rgba(255,107,26,.25);color:var(--orange-soft)}
+
+/* Actions */
+.actions{display:flex;flex-direction:column;gap:.65rem;margin-top:.4rem}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.9rem 1rem;border-radius:14px;font-weight:700;font-size:.85rem;
+  text-decoration:none;border:1px solid transparent;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:transform .15s ease, box-shadow .15s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+.btn svg{width:17px;height:17px;flex-shrink:0}
+.btn-primary{background:var(--orange);color:#0a0e27;box-shadow:0 8px 24px -8px rgba(255,107,26,.55)}
+.btn-outline{background:var(--glass-strong);color:var(--ink);border-color:var(--border)}
+.btn-outline:hover{background:rgba(255,255,255,.12)}
+.btn-volt{background:var(--volt);color:#0a0e27}
+.btn-row{display:flex;gap:.65rem}
+.btn-row .btn{flex:1}
+
+.footer{margin-top:1.8rem;text-align:center}
+.footer .loc{font-family:'Space Grotesk',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+.footer .url{margin-top:.35rem;font-size:.78rem;color:var(--orange-soft);font-weight:600}
+
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--navy);font-weight:700;font-size:.8rem;
+  padding:.7rem 1.2rem;border-radius:12px;opacity:0;pointer-events:none;
+  transition:all .25s ease;z-index:10;font-family:'Inter',sans-serif;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="aurora">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+<div class="grain"></div>
+
+<div class="card">
+  <div class="avatar-wrap"><div class="avatar">SG</div></div>
+  <div class="name">Sam Giri</div>
+  <div class="role">Founder</div>
+  <div class="org">Satoshi Lab — Web3 Engineering &amp; Growth Studio</div>
+
+  <div class="status"><span class="dot"></span> Available for partnerships &amp; speaking</div>
+
+  <div class="eyebrow">The Studio</div>
+  <div class="verticals">
+    <span class="pill">Blockchain Dev</span>
+    <span class="pill">Web3 Product</span>
+    <span class="pill">AI &amp; Automation</span>
+    <span class="pill">Security</span>
+    <span class="pill">Community</span>
+    <span class="pill">Launch PR</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="eyebrow">What I'm Building</div>
+
+  <div class="work">
+    <div class="work-top">
+      <span class="work-name">Satoshi Lab Academy</span>
+      <span class="tag tag-live">Live</span>
+    </div>
+    <div class="work-desc">Cohort-based Web3 courses for non-technical founders — from a free starter track to a flagship crypto intelligence program.</div>
+    <div class="course-pills">
+      <span class="course-pill">LaunchPad</span>
+      <span class="course-pill">Crypto Foundation</span>
+      <span class="course-pill">Web3 Business</span>
+      <span class="course-pill">Web3 Project Manager</span>
+      <span class="course-pill">Smart Contract Pro</span>
+      <span class="course-pill">Crypto Intelligence</span>
+    </div>
+  </div>
+
+  <div class="work">
+    <div class="work-top">
+      <span class="work-name">Web3 Summit</span>
+      <span class="tag tag-build">In the works</span>
+    </div>
+    <div class="work-desc">Our own Web3 summit — conferences, bootcamps and networking for the ecosystem, built on the same studio credibility as our client launches.</div>
+    <div class="work-meta">First summit targeted · 500–1,000 attendees</div>
+  </div>
+
+  <div class="work">
+    <div class="work-top">
+      <span class="work-name">Chainwise</span>
+      <span class="tag tag-build">In the works</span>
+    </div>
+    <div class="work-desc">Crypto investigation &amp; market intelligence platform, integrated with the Crypto Intelligence flagship course.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="eyebrow">Reach Me Directly</div>
+  <div class="actions">
+    <a class="btn btn-primary" href="https://wa.me/971585874793" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10.1 9 9.6 7.7 9.4 7.2 9.2 6.7 9 6.7 8.8 6.7h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.1.9.9-3-.2-.3C3.5 14.6 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+      WhatsApp Me
+    </a>
+    <a class="btn btn-outline" href="https://t.me/asksatoshilab" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9L18 7.3c.4-.4-.1-.6-.6-.2L6.3 13.9l-4.8-1.5c-1-.3-1-1 .2-1.5L20.6 3.3c.8-.3 1.6.2 1.3 1z"/></svg>
+      Message on Telegram
+    </a>
+    <div class="btn-row">
+      <a class="btn btn-outline" href="https://satoshilab.ai" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9s1.3-6.3 3.8-9z"/></svg>
+        Website
+      </a>
+      <button class="btn btn-volt" id="saveContact" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0a0e27" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="loc">Dubai · UTC+4 &nbsp;·&nbsp; India · UAE</div>
+    <div class="url">satoshilab.ai/founder</div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Contact saved</div>
+
+<script>
+document.getElementById('saveContact').addEventListener('click', function(){
+  const vcard = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:Giri;Sam;;;',
+    'FN:Sam Giri',
+    'ORG:Satoshi Lab (Braindeck Infotech Pvt Ltd)',
+    'TITLE:Founder',
+    'TEL;TYPE=CELL,WHATSAPP:+971585874793',
+    'URL:https://satoshilab.ai',
+    'X-SOCIALPROFILE;TYPE=telegram:https://t.me/asksatoshilab',
+    'ADR;TYPE=WORK:;;Dubai;;;;UAE',
+    'NOTE:Founder, Satoshi Lab — Web3 Engineering & Growth Studio. Blockchain Dev · Web3 Product · AI & Automation · Security · Community · Launch PR · Satoshi Lab Academy · Web3 Summit · Chainwise',
+    'END:VCARD'
+  ].join('\r\n');
+  const blob = new Blob([vcard], {type:'text/vcard'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Sam-Giri-Satoshi-Lab.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 2200);
+});
+</script>
+</body>
+</html>
