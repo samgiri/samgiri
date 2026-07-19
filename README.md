@@ -1,97 +1,74 @@
-# Crypto Trading Bot
+<div align="center">
 
-A Python trading bot that buys and sells the **same token every day** on supported exchanges (Binance, Kraken, Coinbase, Bybit).
+# Sam Giri
 
-## Features
+### Founder • Technology Entrepreneur • Web3 & AI Strategist
 
-- **3 built-in strategies**: Simple DCA, RSI, Moving Average Crossover
-- **Risk management**: Stop-loss and take-profit on every position
-- **Backtesting**: Test any strategy on historical data before going live
-- **Testnet support**: Run safely on exchange sandboxes first
-- **Configurable**: Everything driven by a `.env` file
+Building responsible technology ventures across blockchain, artificial intelligence, digital platforms, community governance, and real estate technology.
 
----
+[![Website](https://img.shields.io/badge/Website-samgiri.com-0A66C2?style=for-the-badge&logo=googlechrome&logoColor=white)](https://samgiri.com)
+[![SatoshiLab.ai](https://img.shields.io/badge/SatoshiLab.ai-Blockchain_%26_AI-111827?style=for-the-badge)](https://satoshilab.ai)
 
-## Quickstart
-
-### 1. Clone & install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Configure your environment
-
-```bash
-cp .env.example .env
-# Edit .env with your API keys and desired settings
-```
-
-### 3. Run the bot
-
-```bash
-python bot.py
-```
+</div>
 
 ---
 
-## Strategies
+## About Me
 
-| Strategy | Description | Best for |
-|---|---|---|
-| `simple_dca` | Buy at fixed time, sell at fixed time daily | Passive accumulation |
-| `rsi` | Buy when RSI < 30, sell when RSI > 70 | Volatile markets |
-| `ma_crossover` | Buy on golden cross, sell on death cross | Trending markets |
+I am a founder and technology entrepreneur focused on turning ambitious ideas into practical, trusted digital ventures.
 
----
+My work connects strategy, product development, blockchain, artificial intelligence, education, community building, and emerging business models.
 
-## Configuration (`.env`)
+> Technology is the infrastructure. Humanity is the mission.
 
-| Variable | Default | Description |
-|---|---|---|
-| `API_KEY` | — | Exchange API key |
-| `API_SECRET` | — | Exchange API secret |
-| `SYMBOL` | `BTC/USDT` | Token pair to trade |
-| `BUY_AMOUNT_USDT` | `10` | USDT to spend per buy |
-| `STRATEGY` | `simple_dca` | `simple_dca` / `rsi` / `ma_crossover` |
-| `DCA_BUY_TIME` | `09:00` | UTC time to buy (DCA only) |
-| `DCA_SELL_TIME` | `17:00` | UTC time to sell (DCA only) |
-| `STOP_LOSS_PCT` | `5.0` | Stop-loss trigger % |
-| `TAKE_PROFIT_PCT` | `10.0` | Take-profit trigger % |
-| `EXCHANGE` | `binance` | Exchange name |
-| `TESTNET` | `true` | Use testnet (`true`/`false`) |
+## Ventures
 
----
+### [SatoshiLab.ai](https://satoshilab.ai)
 
-## Backtesting
+A blockchain, AI, and Web3 technology advisory company helping ventures move from concept to strategy, architecture, product development, and growth.
 
-Test a strategy on the last 30 days of BTC/USDT history:
+### [MindHeavenDAO](https://mindheavendao.com)
 
-```bash
-python backtest.py --symbol BTC/USDT --strategy rsi --days 30
+A mission-driven initiative advancing human potential through focus, well-being, education, responsible technology, and collaborative governance.
 
-# Other examples
-python backtest.py --symbol ETH/USDT --strategy ma_crossover --days 60
-python backtest.py --symbol BNB/USDT --strategy rsi --days 14 --sl 3.0 --tp 8.0
-```
+**The Future of Human Intelligence.**
 
----
+SatoshiLab.ai serves as the technology advisory company for MindHeavenDAO.
 
-## File Structure
+### [KhaliPlot.in](https://khaliplot.in)
 
-```
-.
-├── bot.py          # Main bot entry point & scheduler
-├── strategies.py   # Trading strategy logic (RSI, MA, DCA)
-├── exchange.py     # Exchange connection & order helpers
-├── backtest.py     # Historical backtester (no real orders)
-├── config.py       # Loads config from .env
-├── .env.example    # Template for your .env file
-└── requirements.txt
-```
+A technology-powered marketplace designed to make the discovery, presentation, and sale of plots and land simpler and more transparent.
+
+## Areas of Focus
+
+- Blockchain and Web3 strategy
+- Artificial intelligence and automation
+- Product design and digital platforms
+- DAO governance and token architecture
+- Technology education and community development
+- Real estate technology
+- Brand building and venture growth
+
+## Selected Work
+
+- [MindHeavenDAO](https://github.com/samgiri/mindheavendao) — Foundation documentation, governance architecture, and digital platform
+- [KhaliPlot](https://github.com/samgiri/khaliplot) — Modern marketplace experience for plots and land
+- [SatoshiLab.ai](https://satoshilab.ai) — Blockchain, AI, Web3 advisory, education, and product development
+
+## My Principles
+
+- Build with purpose
+- Make trust visible
+- Keep governance transparent
+- Use technology responsibly
+- Design for long-term human value
 
 ---
 
-## Disclaimer
+<div align="center">
 
-**This bot is for educational purposes only.** Crypto trading involves significant financial risk. Always test on testnet first, start with small amounts, and never trade money you cannot afford to lose.
+### Let’s Build What Matters
+
+Explore my work at [samgiri.com](https://samgiri.com) and [satoshilab.ai](https://satoshilab.ai).
+
+</div>
