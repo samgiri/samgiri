@@ -114,6 +114,62 @@ a { color: inherit; text-decoration: none; }
   border-color: var(--orange);
 }
 
+/* ENQUIRY FORM */
+.enquiry-form {
+  glass;
+  padding: 2.5rem;
+  max-width: 550px;
+  margin: 0 auto 2rem;
+  border: 1px solid rgba(255, 107, 26, 0.25);
+  text-align: left;
+}
+
+.enquiry-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.enquiry-form label:first-child {
+  margin-top: 0;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+.enquiry-form select option {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+}
+
+.enquiry-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
 /* NAV */
 nav {
   position: sticky;
@@ -957,7 +1013,34 @@ footer p {
   <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
     Connect with us. Let's build something great.
   </p>
-  
+
+  <form class="enquiry-form" action="https://formspree.io/f/mwvgogbv" method="POST">
+    <input type="hidden" name="_source" value="Homepage enquiry">
+    <input type="hidden" name="_subject" value="New homepage enquiry — Satoshi Lab">
+    <label for="contact-name">Your Name</label>
+    <input type="text" id="contact-name" name="name" placeholder="Full name" required>
+
+    <label for="contact-email">Email</label>
+    <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+
+    <label for="contact-purpose">Purpose</label>
+    <select id="contact-purpose" name="purpose" required>
+      <option value="" disabled selected>Select purpose</option>
+      <option value="project">Start a Project</option>
+      <option value="academy">Join Academy Course</option>
+      <option value="audit">Smart Contract Audit</option>
+      <option value="community">Community Management</option>
+      <option value="partnership">Partnership</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="contact-message">Message (optional)</label>
+    <textarea id="contact-message" name="message" rows="3" placeholder="Tell us a bit about your project"></textarea>
+
+    <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+  </form>
+  <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem;">By sending this form, you agree that Satoshi Lab may use your details to respond to your enquiry. See our <a href="privacy.html" style="color: var(--orange);">Privacy Policy</a>.</p>
+
   <div class="social-links">
     <a href="https://t.me/asksatoshilab" class="social-link social-telegram" title="Telegram">
       <i class="fab fa-telegram"></i>
