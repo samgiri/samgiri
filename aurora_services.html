@@ -94,6 +94,62 @@ a { color: inherit; text-decoration: none; }
   border-color: var(--orange);
 }
 
+/* ENQUIRY FORM */
+.enquiry-form {
+  glass;
+  padding: 2.5rem;
+  max-width: 550px;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(255, 107, 26, 0.25);
+  text-align: left;
+}
+
+.enquiry-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.enquiry-form label:first-child {
+  margin-top: 0;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+.enquiry-form select option {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+}
+
+.enquiry-form button {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
 /* NAV */
 nav {
   position: sticky;
@@ -543,9 +599,38 @@ footer p {
   <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
     Tell us about your project. We'll recommend the right solution — free scoping call, no commitment.
   </p>
-  
+
+  <form class="enquiry-form" action="https://formspree.io/f/mwvgogbv" method="POST">
+    <input type="hidden" name="_source" value="Services page enquiry">
+    <input type="hidden" name="_subject" value="New Services enquiry — Satoshi Lab">
+    <label for="svc-name">Your Name</label>
+    <input type="text" id="svc-name" name="name" placeholder="Full name" required>
+
+    <label for="svc-email">Email</label>
+    <input type="email" id="svc-email" name="email" placeholder="you@example.com" required>
+
+    <label for="svc-service">Which Service Interests You?</label>
+    <select id="svc-service" name="service" required>
+      <option value="" disabled selected>Select a service</option>
+      <option value="smart-contracts">Smart Contracts</option>
+      <option value="web3-products">Web3 Products</option>
+      <option value="ai-automation">AI & Automation</option>
+      <option value="security-audits">Security Audits</option>
+      <option value="community">Community Management</option>
+      <option value="launch-pr">Launch PR</option>
+      <option value="not-sure">Not Sure — Help Me Choose</option>
+    </select>
+
+    <label for="svc-message">Project Details (optional)</label>
+    <textarea id="svc-message" name="message" rows="3" placeholder="Tell us a bit about your project"></textarea>
+
+    <button type="submit" class="btn btn-primary">Send Enquiry →</button>
+  </form>
+  <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 1rem auto 2rem; max-width: 550px;">By sending this form, you agree that Satoshi Lab may use your details to respond to your enquiry. See our <a href="privacy.html" style="color: var(--orange);">Privacy Policy</a>.</p>
+
   <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
     <a href="https://t.me/asksatoshilab" class="btn btn-primary" target="_blank">💬 Chat on Telegram</a>
+    <a href="https://wa.me/919625763256" class="btn btn-primary" target="_blank" style="background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);">📱 WhatsApp Us</a>
     <a href="mailto:info@satoshilab.ai" class="btn btn-secondary">📧 Send Email</a>
   </div>
 </section>
@@ -569,6 +654,7 @@ footer p {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script src="site-polish.js"></script>
+<script src="faq-widget.js"></script>
 
 </body>
 </html>
